@@ -7,7 +7,9 @@ public class PlayerControl : MonoBehaviour
     public GameObject Spaceship;
     public Camera Cam;
     public Joystick joystick;
-    public float RotateShip;
+    public Transform joystickH;
+    private float jsd;
+    private float RotateShip;
     private float RememberRotation;
     private float ClosestRotation;
     public float MovementSpeed;
@@ -26,10 +28,13 @@ public class PlayerControl : MonoBehaviour
     }
     void Movement()
     {
-        Spaceship.transform.position = Spaceship.transform.position + Spaceship.transform.up * MovementSpeed * Time.deltaTime;
+        jsd = Vector3.Distance(joystick.transform.position, joystickH.position);
+        if (jsd < 50) jsd = 50;
+        float Speed = MovementSpeed * jsd/100;
+        Spaceship.transform.position = Spaceship.transform.position + Spaceship.transform.up * Speed * Time.deltaTime;
         Vector3 Camdist = new Vector3(Spaceship.transform.position.x, Cam.transform.position.y, Spaceship.transform.position.z);
         float dist = Vector3.Distance(Camdist, Cam.transform.position);
-        if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, MovementSpeed * Time.deltaTime); }
+        if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, Speed * Time.deltaTime); }
 
         RotateShip = Mathf.Atan2(joystick.Horizontal, joystick.Vertical) * -180 / Mathf.PI * -1;
         if (RotateShip < 0) { RotateShip *= -1; RotateShip -= 180; RotateShip *= -1; RotateShip += 180; }

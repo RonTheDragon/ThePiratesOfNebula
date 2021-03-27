@@ -169,7 +169,7 @@ MonoBehaviour:
   Spaceship: {fileID: 850674037}
   Cam: {fileID: 963194227}
   joystick: {fileID: 393527473}
-  RotateShip: 0
+  joystickH: {fileID: 880787077}
   MovementSpeed: 10
   RotationSpeed: 1
 --- !u!114 &393527473 stripped
@@ -670,6 +670,12 @@ Transform:
   m_Father: {fileID: 105004397}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!224 &880787077 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2929252285020697096, guid: aaa2c939c0359ac4dbce3f49e8b90252,
+    type: 3}
+  m_PrefabInstance: {fileID: 477929141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &933393132 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
