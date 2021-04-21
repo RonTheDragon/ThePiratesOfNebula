@@ -45,7 +45,7 @@ public class PlayerControl : MonoBehaviour
         if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, Speed * 0.3f* dist * Time.deltaTime); }
 
         RotateShip = Mathf.Atan2(joystick.Horizontal, joystick.Vertical) * -180 / Mathf.PI * -1;
-        if (RotateShip < 0) { RotateShip *= -1; RotateShip -= 180; RotateShip *= -1; RotateShip += 180; }
+        if (RotateShip < 0) { RotateShip += 360; }
         if (RotateShip == 0) RotateShip = RememberRotation;
         RememberRotation = RotateShip;
         
