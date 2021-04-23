@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
     GameObject Attacker;
     Vector3 V3Knockback;
     Vector3 no;
+    public GameObject[] TurnOffWhenDeath;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +52,7 @@ public class Health : MonoBehaviour
 
     void Death()
     {
-        gameObject.SetActive(false);
+        foreach(GameObject g in TurnOffWhenDeath)
+        g.SetActive(false);
     }
 }

@@ -8,6 +8,9 @@ public class Cannon : MonoBehaviour
     public GameObject GunPoint;
     public string PrefabShot;
     public bool ParticleShot;
+    public float Cooldown=0.2f;
+    float cooldown;
+    public Cannon[] ExtraCannons;
 
     // Start is called before the first frame update
     void Start()
@@ -18,18 +21,29 @@ public class Cannon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (cooldown > 0) { cooldown -= Time.deltaTime; }
     }
 
     public void Shoot()
     {
-        if (ParticleShot)
+        if (cooldown <= 0)
         {
+            cooldown = Cooldown;
+            if (ParticleShot)
+            {
 
+            }
+            else
+            {
+                objectPooler.SpawnFromPool(PrefabShot, GunPoint.transform.position, GunPoint.transform.rotation);
+            }
         }
-        else
+        if (ExtraCannons.Length > 0)
         {
-            objectPooler.SpawnFromPool(PrefabShot, GunPoint.transform.position, GunPoint.transform.rotation);
+            foreach(Cannon c in ExtraCannons)
+            {
+                c.Shoot();
+            }
         }
     }
 }
