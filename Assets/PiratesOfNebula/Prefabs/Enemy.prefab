@@ -136,7 +136,7 @@ MonoBehaviour:
   MaxHp: 10
   Hp: 0
   TurnOffWhenDeath:
-  - {fileID: 242173287792567158}
+  - {fileID: 2552027404687969655}
   - {fileID: 3993143354713760685}
 --- !u!54 &2552027404687969661
 Rigidbody:

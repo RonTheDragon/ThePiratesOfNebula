@@ -1188,6 +1188,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1466036420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 576979877874080809, guid: f232ca76f4d82b142ae7116b6e0c27db,
+    type: 3}
+  m_PrefabInstance: {fileID: 576979877660147687}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1481850423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7371405489054994964, guid: a10a525b5a8541844b61f6c7a5dceb5f,
@@ -1472,6 +1478,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 490775507, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
+      propertyPath: TurnOffWhenDeath.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 490775507, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
+      propertyPath: TurnOffWhenDeath.Array.data[0]
+      value: 
+      objectReference: {fileID: 1466036420}
     - target: {fileID: 576979877689361034, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1531,6 +1545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 576979878139067030, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}

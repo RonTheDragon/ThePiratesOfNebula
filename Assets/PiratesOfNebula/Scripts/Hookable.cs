@@ -32,14 +32,20 @@ public class Hookable : MonoBehaviour
         {
             if (HookableHealth >= hp.Hp && Pc !=null)
             {
-                hookable = true;
-                Canvas.SetActive(true);               
+                StartCoroutine(SpawnHookable());
+                         
             }
         }
     }
     public void Hooked()
     {
         Pc.Hook(gameObject,HookingRange);
+    }
+    IEnumerator SpawnHookable()
+    {
+        yield return new WaitForSeconds(1);
+        hookable = true;
+        Canvas.SetActive(true);
     }
     
 }
