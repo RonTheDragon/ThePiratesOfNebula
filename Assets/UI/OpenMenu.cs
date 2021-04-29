@@ -40,6 +40,8 @@ public class OpenMenu : MonoBehaviour
     {
         ButtonsPanel.SetActive(true);
         NewGameMenu.SetActive(false);
+        SpecSelector.SetActive(true);
+        AvatarSelector.SetActive(false);
     }
 
     public void OpenSettings()
