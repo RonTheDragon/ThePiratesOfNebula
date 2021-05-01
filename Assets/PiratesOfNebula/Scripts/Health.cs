@@ -11,10 +11,12 @@ public class Health : MonoBehaviour
     Vector3 V3Knockback;
     Vector3 no;
     public GameObject[] TurnOffWhenDeath;
+    SpaceshipsAI SAI;
     // Start is called before the first frame update
     void Start()
     {
         Hp = MaxHp;
+        SAI = gameObject.GetComponent<SpaceshipsAI>();
     }
 
     // Update is called once per frame
@@ -47,6 +49,7 @@ public class Health : MonoBehaviour
                 knockback = kb;
                 V3Knockback = no;
             }
+            SAI?.Scan(100);
         }
     }
 

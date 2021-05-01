@@ -32,12 +32,15 @@ public class SpaceshipsAI : MonoBehaviour
             Combat();
         }
     }
-    void Scan(float Range)
+    public void Scan(float Range)
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, Range);
-        foreach (Collider hit in colliders)
+        if (Target == null)
         {
-            if (hit.transform.tag == "Player") { Target = hit.gameObject; hookAble.Player = Target; break; }
+            Collider[] colliders = Physics.OverlapSphere(transform.position, Range);
+            foreach (Collider hit in colliders)
+            {
+                if (hit.transform.tag == "Player") { Target = hit.gameObject; hookAble.Player = Target; break; }
+            }
         }
     }
 
