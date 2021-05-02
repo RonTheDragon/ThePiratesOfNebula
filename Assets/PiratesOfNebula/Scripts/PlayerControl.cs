@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     private GameObject TheHooked;
     private float TheHookedRange;
     public GameObject[] Cannons; //0 Front , 1 Back , 2 Right , 3 Left
+    public GameObject[] CannonHolders;
     Cannon[] CS;
     bool[] ShootingSide;
     public Camera Cam;
@@ -168,5 +169,13 @@ public class PlayerControl : MonoBehaviour
     void StopHooking()
     {
         catched = false; hooking = false; TheHook.SetActive(false); TheHooked = null; TheHookedRange = 0;
+    }
+    public void ChangeWeapon(GameObject Weapon, int WhichCannon)
+    {
+        Destroy(Cannons[WhichCannon]);
+        Cannons[WhichCannon] = Instantiate(Weapon);
+        Cannons[WhichCannon].transform.position = CannonHolders[WhichCannon].transform.position;
+        Cannons[WhichCannon].transform.rotation = CannonHolders[WhichCannon].transform.rotation;
+        Cannons[WhichCannon].transform.SetParent(CannonHolders[WhichCannon].transform);
     }
 }

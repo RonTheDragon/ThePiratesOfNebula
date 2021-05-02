@@ -33,7 +33,7 @@ public class ObjectPooler : MonoBehaviour
             Queue<GameObject> objectPool = new Queue<GameObject>();
             for (int i = 0; i < pool.size; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab,gameObject.transform);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

@@ -10,7 +10,7 @@ public class ShipsManagement : MonoBehaviour
 
     void Start()
     {
-        
+        setWeaponSwitching();
     }
   
     void Update()
@@ -22,7 +22,6 @@ public class ShipsManagement : MonoBehaviour
     {
         ChangeMenu(1);
         Spaceship.SetActive(false);
-
     }
     public void FlyShip()
     {
@@ -36,5 +35,28 @@ public class ShipsManagement : MonoBehaviour
             m.SetActive(false);
         }
         Menus[Menu].SetActive(true);
+    }
+    void setWeaponSwitching()
+    {
+        int x = -350;
+        int y = 70;
+        int count = 0;
+        foreach (GameObject w in Weapons)
+        {
+            Cannon c = w.GetComponent<Cannon>();
+            if (c != null)
+            {
+                GameObject i = Instantiate(c.WeaponIcon);
+                // i.transform.parent = Menus[1].transform;
+                i.transform.SetParent(Menus[1].transform);
+                RectTransform r = i.GetComponent<RectTransform>();
+                DragAndDrop d = i.GetComponent<DragAndDrop>();
+                d.TheWeapon = w;
+                r.anchoredPosition = new Vector3(x, y);
+                count++;
+                if (count >= 5) { x = -430; y -= 80; count = 0; }
+                x += 80;
+            }
+        }
     }
 }

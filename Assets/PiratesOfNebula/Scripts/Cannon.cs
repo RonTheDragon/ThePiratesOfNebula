@@ -11,6 +11,7 @@ public class Cannon : MonoBehaviour
     public float Cooldown=0.2f;
     float cooldown;
     public Cannon[] ExtraCannons;
+    public GameObject WeaponIcon;
 
     // Start is called before the first frame update
     void Start()
