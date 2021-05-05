@@ -21,12 +21,12 @@ public class ShipsManagement : MonoBehaviour
     public void SwitchWeapons()
     {
         ChangeMenu(1);
-        Spaceship.SetActive(false);
+        Time.timeScale = 0;
     }
     public void FlyShip()
     {
-        ChangeMenu(0);
-        Spaceship.SetActive(true);
+        ChangeMenu(0);   
+        Time.timeScale = 1;
     }
     void ChangeMenu(int Menu)
     {

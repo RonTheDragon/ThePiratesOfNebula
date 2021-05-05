@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public GameObject TheHook;
-    private bool hooking;
-    private bool catched;
+    LineRenderer LR;
+    public int hookingStep;
+    private bool docked;
     private GameObject TheHooked;
     private float TheHookedRange;
     public GameObject[] Cannons; //0 Front , 1 Back , 2 Right , 3 Left
@@ -17,22 +18,26 @@ public class PlayerControl : MonoBehaviour
     public Joystick joystick;
     public Transform joystickH;
     public float jsd;
+    bool NotMoving;
     private float RotateShip;
     private float RememberRotation;
     private float ClosestRotation;
     public float MovementSpeed;
     float MoveAxl;
     public float RotationSpeed;
+    public GameObject[] SwitchJoysickToUndock;
     // Start is called before the first frame update
     void Start()
     {
         CS = new Cannon[Cannons.Length];
+        LR = TheHook.GetComponent<LineRenderer>();
         ShootingSide = new bool[Cannons.Length];
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         Movement();
         Combat();
         
@@ -40,6 +45,8 @@ public class PlayerControl : MonoBehaviour
     void Movement()
     {
         jsd = Vector3.Distance(joystick.transform.position, joystickH.position); //Joystick Distance
+        if (jsd == 0 && docked==false) NotMoving = true;
+        else NotMoving = false;
         if (jsd < 50) jsd = 50;
 
         if (jsd > 100) { MoveAxl += 0.1f * Time.deltaTime; }
@@ -97,45 +104,112 @@ public class PlayerControl : MonoBehaviour
     void Combat()
     {
         int count = 0;
-        foreach(bool s in ShootingSide)
+        foreach (bool s in ShootingSide) //Attack
         {
             if (s) { Attack(count); }
             count++;
         }
 
-
-        if (hooking)
+        if (TheHook.activeSelf == true) //Set Rope
         {
-            if (TheHook.activeSelf == false || TheHooked.activeSelf == false || gameObject.activeSelf == false) { StopHooking(); }
-            else
-            {
-                TheHook.transform.LookAt(TheHooked.transform.position);
-                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, TheHooked.transform.position, 10 * Time.deltaTime);
-                float dist = Vector3.Distance(TheHook.transform.position, TheHooked.transform.position);
-                if (dist < 1)
-                {
-                    catched = true;
-                }
+            LR.SetPosition(0, transform.position);
+            LR.SetPosition(1, TheHook.transform.position);
+        }
 
-                if (catched)
-                {
-                    gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, TheHooked.transform.position, 5 * Time.deltaTime);
-                    TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, 5 * Time.deltaTime);
-                    float dist2 = Vector3.Distance(gameObject.transform.position, TheHooked.transform.position);
-                    if (dist2 > 30)
-                    {
-                        StopHooking();
-                    }
-                    else if (dist2 < TheHookedRange)
-                    {
-                        StopHooking();
-                        //Boarding The Ship
-                    }
-                }
+        if (TheHooked != null)
+        {
+            if (TheHooked.activeSelf == false) //Target is dead... Stop Hooking
+            {
+                hookingStep = 0;
+                TheHooked = null;
+                SwitchJoysickToUndock[0].SetActive(true);
+                SwitchJoysickToUndock[1].SetActive(false);
             }
         }
 
+        if (hookingStep == 0) // Hook Back / Not Hooking
+        {
+            if (TheHook.activeSelf == true)
+            {
+                TheHook.transform.LookAt(transform.position);
+                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 10 * Time.deltaTime);
+                float dist = Vector3.Distance(TheHook.transform.position, transform.position);
+                if (dist < 1)
+                {
+                    TheHook.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            
+            if (hookingStep == 1) //hook Forward
+            {
+
+                float dist = Vector3.Distance(TheHook.transform.position, TheHooked.transform.position); // Hook Distance 
+
+                TheHook.transform.LookAt(TheHooked.transform.position);
+                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, TheHooked.transform.position, 10 * Time.deltaTime);
+                if (dist < 1)
+                {
+                    hookingStep = 2;
+                }
+            }
+
+            if (hookingStep == 2) //hook Connected
+            {
+
+                float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance 
+                TheHook.transform.position = TheHooked.transform.position;  
+                
+                if (dist < TheHookedRange && !docked && NotMoving)
+                {
+                    hookingStep = 3; docked = true;
+                }
+                else if (dist > 10)
+                {
+                    docked = false;
+                }
+                if (dist > 10 || NotMoving)
+                {
+                    float pullingSpeed = 5;
+                    if (dist > pullingSpeed) { pullingSpeed = dist; }
+                    TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, pullingSpeed * 1.5f * Time.deltaTime);
+                }
+                else 
+                {
+                    TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, dist * Time.deltaTime);
+                }
+
+
+            }
+
+            if (hookingStep == 3) //Docked
+            {
+                float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance 
+
+                TheHook.transform.position = TheHooked.transform.position;
+                SwitchJoysickToUndock[0].SetActive(false);
+                SwitchJoysickToUndock[1].SetActive(true);
+                if (dist > TheHookedRange)
+                { TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, dist * 2 * Time.deltaTime); }
+                else
+                {
+                    TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, dist * -0.1f * Time.deltaTime);
+                }
+            }
+
+        }
+
+
     }
+    public void StopDocking()
+    {
+        hookingStep = 2;
+        SwitchJoysickToUndock[0].SetActive(true);
+        SwitchJoysickToUndock[1].SetActive(false);
+    }
+
     public void PressingFire(int Side)
     {
         ShootingSide[Side] = true;
@@ -156,10 +230,9 @@ public class PlayerControl : MonoBehaviour
 
     public void Hook(GameObject Thehooked, float THR)
     {
-        if (!hooking)
+        if (hookingStep==0)
         {
-            hooking = true;
-            catched = false;
+            hookingStep = 1;
             TheHook.SetActive(true);
             TheHook.transform.position = gameObject.transform.position;
             TheHooked = Thehooked;
@@ -168,7 +241,7 @@ public class PlayerControl : MonoBehaviour
     }
     void StopHooking()
     {
-        catched = false; hooking = false; TheHook.SetActive(false); TheHooked = null; TheHookedRange = 0;
+        hookingStep = 0; TheHooked = null; TheHookedRange = 0;  
     }
     public void ChangeWeapon(GameObject Weapon, int WhichCannon)
     {

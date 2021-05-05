@@ -11,6 +11,7 @@ public class Hookable : MonoBehaviour
     public bool hookable;
     Health hp;
     public GameObject Canvas;
+    public GameObject[] Buttons;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,15 @@ public class Hookable : MonoBehaviour
         {
             Pc = Player.GetComponent<PlayerControl>();
         }
-
-        if (hp.Hp < 0) { Canvas.SetActive(false); }
+        if (Pc != null)
+        {
+            if (hp.Hp < 0 || Pc.hookingStep == 3) { Canvas.SetActive(false); }
+            else
+            {
+                Canvas.SetActive(true);
+            }
+        }
+        
         Canvas.transform.position = new Vector3(transform.position.x, Canvas.transform.position.y, transform.position.z);
 
         if (!hookable) // if not Hooked Yet
@@ -40,12 +48,20 @@ public class Hookable : MonoBehaviour
     public void Hooked()
     {
         Pc.Hook(gameObject,HookingRange);
+        Buttons[0].SetActive(false);
+        Buttons[1].SetActive(true);
+    }
+    public void UnHooked()
+    {
+        Pc.hookingStep = 0;
+        Buttons[1].SetActive(false);
+        Buttons[0].SetActive(true);
     }
     IEnumerator SpawnHookable()
     {
         yield return new WaitForSeconds(1);
         hookable = true;
-        Canvas.SetActive(true);
+        Buttons[0].SetActive(true);
     }
     
 }
