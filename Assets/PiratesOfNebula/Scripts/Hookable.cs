@@ -27,7 +27,7 @@ public class Hookable : MonoBehaviour
         }
         if (Pc != null)
         {
-            if (hp.Hp < 0 || Pc.hookingStep == 3) { Canvas.SetActive(false); }
+            if (hp.Hp < 0 || Pc.hookingStep == 3||Pc.TheHooked!=gameObject && Pc.hookingStep>0) { Canvas.SetActive(false); }
             else
             {
                 Canvas.SetActive(true);

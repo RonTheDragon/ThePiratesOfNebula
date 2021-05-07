@@ -338,6 +338,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 576979877660147687}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &105004397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105004396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 341cbd0dff43925448796cf85e84767b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Money: 0
 --- !u!4 &147464670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7371405489054994964, guid: a10a525b5a8541844b61f6c7a5dceb5f,
@@ -1990,6 +2003,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 576979878139067030, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352870542482051232, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352870542482051232, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352870542482051232, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -239
+      objectReference: {fileID: 0}
+    - target: {fileID: 2352870542482051232, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
 --- !u!1001 &3993143354247357831
@@ -1999,6 +2037,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2552027404687969650, guid: 036f1c639aef31348bf80e667e3426df,
+        type: 3}
+      propertyPath: MaxHp
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2552027404687969653, guid: 036f1c639aef31348bf80e667e3426df,
         type: 3}
       propertyPath: Player

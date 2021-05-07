@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
     LineRenderer LR;
     public int hookingStep;
     private bool docked;
-    private GameObject TheHooked;
+    public GameObject TheHooked;
     private float TheHookedRange;
     public GameObject[] Cannons; //0 Front , 1 Back , 2 Right , 3 Left
     public GameObject[] CannonHolders;
@@ -126,13 +126,13 @@ public class PlayerControl : MonoBehaviour
                 SwitchJoysickToUndock[1].SetActive(false);
             }
         }
-
+        
         if (hookingStep == 0) // Hook Back / Not Hooking
         {
             if (TheHook.activeSelf == true)
             {
                 TheHook.transform.LookAt(transform.position);
-                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 10 * Time.deltaTime);
+                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 10 * Time.deltaTime); //hook goes back to ship
                 float dist = Vector3.Distance(TheHook.transform.position, transform.position);
                 if (dist < 1)
                 {
@@ -197,6 +197,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, dist * -0.1f * Time.deltaTime);
                 }
+                
             }
 
         }

@@ -39,7 +39,7 @@ public class ShipsManagement : MonoBehaviour
     void setWeaponSwitching()
     {
         int x = -350;
-        int y = 70;
+        int y = 150;
         int count = 0;
         foreach (GameObject w in Weapons)
         {
@@ -54,8 +54,8 @@ public class ShipsManagement : MonoBehaviour
                 d.TheWeapon = w;
                 r.anchoredPosition = new Vector3(x, y);
                 count++;
-                if (count >= 5) { x = -430; y -= 80; count = 0; }
-                x += 80;
+                if (count >= 5) { x = -450; y -= 70; count = 0; }
+                x += 100;
             }
         }
     }

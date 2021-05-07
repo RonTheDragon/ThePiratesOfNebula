@@ -8,7 +8,9 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
     RectTransform icon;
     CanvasGroup cg;
     Vector3 startPosition;
+    Canvas canvas;
     public GameObject TheWeapon;
+
     private void Awake()
     {
         icon = GetComponent<RectTransform>();
@@ -19,6 +21,7 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
     void Start()
     {
         startPosition = icon.anchoredPosition;
+        canvas = gameObject.transform.parent.parent.GetComponent<Canvas>();
     }
 
     // Update is called once per frame
@@ -34,7 +37,7 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
 
     public void OnDrag(PointerEventData eventData)
     {
-        icon.anchoredPosition += eventData.delta;
+        icon.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -48,6 +51,5 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
     {
        // throw new System.NotImplementedException();
     }
-
     
 }

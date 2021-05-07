@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour , IpooledObject
     public bool DestroyOnImpact;
     public bool CantHitPlayer;
     public bool CantHitEnemy;
-    // Start is called before the first frame update
+    // Start is called before the Active
     public void OnObjectSpawn()
     {
 
