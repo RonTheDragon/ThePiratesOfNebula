@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65862b723e6bd894a8aa5b8df7ee26cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Money: 100
   HookableHealth: 4
   HookingRange: 3
   Player: {fileID: 0}

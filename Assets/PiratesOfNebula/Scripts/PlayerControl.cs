@@ -6,6 +6,9 @@ public class PlayerControl : MonoBehaviour
 {
     public GameObject TheHook;
     LineRenderer LR;
+    Currency currency;
+    float MilkingTime;
+    Hookable pudge;
     public int hookingStep;
     private bool docked;
     public GameObject TheHooked;
@@ -32,6 +35,7 @@ public class PlayerControl : MonoBehaviour
         CS = new Cannon[Cannons.Length];
         LR = TheHook.GetComponent<LineRenderer>();
         ShootingSide = new bool[Cannons.Length];
+        currency = transform.parent.GetComponent<Currency>();
     }
 
     // Update is called once per frame
@@ -164,7 +168,7 @@ public class PlayerControl : MonoBehaviour
                 
                 if (dist < TheHookedRange && !docked && NotMoving)
                 {
-                    hookingStep = 3; docked = true;
+                    hookingStep = 3; docked = true; MilkingTime = 1;
                 }
                 else if (dist > 10)
                 {
@@ -186,6 +190,7 @@ public class PlayerControl : MonoBehaviour
 
             if (hookingStep == 3) //Docked
             {
+                
                 float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance 
 
                 TheHook.transform.position = TheHooked.transform.position;
@@ -197,7 +202,25 @@ public class PlayerControl : MonoBehaviour
                 {
                     TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, dist * -0.1f * Time.deltaTime);
                 }
-                
+                if (MilkingTime <= 0)
+                {
+                    MilkingTime = 1;
+                    if (pudge == null)
+                    {
+                        pudge = TheHooked.GetComponent<Hookable>();
+                    }
+                    else if (pudge.Money > 10)
+                    {
+                        currency.Money += pudge.Money / 2;
+                        pudge.Money -= pudge.Money / 2;
+                    }
+                    else if (pudge.Money > 0)
+                    {
+                        currency.Money += pudge.Money;
+                        pudge.Money = 0;
+                    }
+                }
+                else { MilkingTime -= Time.deltaTime; }
             }
 
         }
@@ -209,6 +232,10 @@ public class PlayerControl : MonoBehaviour
         hookingStep = 2;
         SwitchJoysickToUndock[0].SetActive(true);
         SwitchJoysickToUndock[1].SetActive(false);
+        if (pudge != null)
+        {
+            pudge = null;
+        }
     }
 
     public void PressingFire(int Side)

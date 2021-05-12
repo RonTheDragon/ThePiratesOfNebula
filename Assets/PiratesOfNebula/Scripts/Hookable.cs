@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Hookable : MonoBehaviour
 {
+    public int Money;
     public float HookableHealth;
     public float HookingRange;
     public GameObject Player;

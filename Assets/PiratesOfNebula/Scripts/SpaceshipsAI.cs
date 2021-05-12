@@ -43,9 +43,42 @@ public class SpaceshipsAI : MonoBehaviour
             }
         }
     }
+    void CheckForDodge()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + transform.right * -1.5f, transform.forward, out hit, 20))
+        {
+            //Debug.DrawRay(transform.position + transform.right * -1.5f, transform.forward * hit.distance, Color.yellow);
+            Dodge(hit, 40);
+        }
+        else
+        {
+            RaycastHit hit2;
+            if (Physics.Raycast(transform.position + transform.right * 1.5f, transform.forward, out hit2, 20))
+            {
+                // Debug.DrawRay(transform.position + transform.right * 1.5f, transform.forward * hit2.distance, Color.yellow);
+                Dodge(hit2, -40);
+            }
+        }
+    }
+    void Dodge(RaycastHit hit,float turn)
+    {
+        if (Target == null)
+        {
+            float dist = Vector3.Distance(transform.position, hit.transform.position);
+            if (dist < 20) { transform.Rotate(0, RotationSpeed * turn * Time.deltaTime, 0); }
+        }
+        else if (hit.transform != Target.transform)
+        {
+            float dist = Vector3.Distance(transform.position, hit.transform.position);
+            if (dist < 20) { transform.Rotate(0, RotationSpeed * turn * Time.deltaTime, 0); }
+        }
+    }
 
     void Movement()
     {
+        CheckForDodge();
+
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed * Time.deltaTime; //Go Forward
 
         if (Target != null) //Rotate Towards Target
