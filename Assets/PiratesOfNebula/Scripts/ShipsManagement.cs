@@ -1,21 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipsManagement : MonoBehaviour
 {
     public GameObject Spaceship;
+    public Image Healthbar;
+    Health health;
     public GameObject[] Menus;
     public GameObject[] Weapons;
 
     void Start()
     {
         setWeaponSwitching();
+        health = Spaceship.GetComponent<Health>();
     }
   
     void Update()
     {
-        
+        Healthbar.fillAmount = health.Hp / health.MaxHp;
     }
 
     public void SwitchWeapons()

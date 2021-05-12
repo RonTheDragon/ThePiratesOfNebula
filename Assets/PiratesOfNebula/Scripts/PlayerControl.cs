@@ -7,6 +7,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject TheHook;
     LineRenderer LR;
     Currency currency;
+    Health health;
     float MilkingTime;
     Hookable pudge;
     public int hookingStep;
@@ -36,6 +37,7 @@ public class PlayerControl : MonoBehaviour
         LR = TheHook.GetComponent<LineRenderer>();
         ShootingSide = new bool[Cannons.Length];
         currency = transform.parent.GetComponent<Currency>();
+        health = GetComponent<Health>();
     }
 
     // Update is called once per frame
@@ -227,6 +229,8 @@ public class PlayerControl : MonoBehaviour
 
 
     }
+
+
     public void StopDocking()
     {
         hookingStep = 2;
