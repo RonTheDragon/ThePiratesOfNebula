@@ -1394,6 +1394,10 @@ MonoBehaviour:
     prefab: {fileID: 6230811394184091462, guid: 9185a74c6d130894d87746aba8aff39c,
       type: 3}
     size: 20
+  - tag: Rocket
+    prefab: {fileID: 1272754628145479324, guid: 4cde5d5ed1e12f943984db09ba59c2de,
+      type: 3}
+    size: 20
 --- !u!1001 &1576635118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1619,13 +1623,13 @@ PrefabInstance:
     - target: {fileID: 6938297865170612559, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: Weapons.Array.size
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6938297865170612559, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: Weapons.Array.data[2]
       value: 
-      objectReference: {fileID: 8655404078043719575, guid: dac749fe92d9ad048b491b15149cae51,
+      objectReference: {fileID: 7988450233259561975, guid: d1c526d6440b1ae48938d66eb7e1c8b2,
         type: 3}
     - target: {fileID: 6938297865170612559, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
