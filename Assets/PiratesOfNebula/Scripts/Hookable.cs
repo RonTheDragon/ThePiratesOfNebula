@@ -22,13 +22,18 @@ public class Hookable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player != null && Pc == null)
+        if (Pc == null)
         {
-            Pc = Player.GetComponent<PlayerControl>();
+            Canvas.SetActive(false);
+            if (Player != null)
+            {
+                
+                Pc = Player.GetComponent<PlayerControl>();
+            }
         }
         if (Pc != null)
         {
-            if (hp.Hp < 0 || Pc.hookingStep == 3||Pc.TheHooked!=gameObject && Pc.hookingStep>0) { Canvas.SetActive(false); }
+            if (hp.Hp < 0 || Pc.hookingStep == 3||Pc.TheHooked!=gameObject && Pc.hookingStep>0||hp.Hp==hp.MaxHp) { Canvas.SetActive(false); } //if Dead/docked/hooking step while not being hooked/full hp
             else
             {
                 Canvas.SetActive(true);

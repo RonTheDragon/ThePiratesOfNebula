@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public float MaxHp;
     public float Hp;
+    public Image Healthbar;
     float knockback;
     GameObject Attacker;
     Vector3 V3Knockback;
@@ -24,6 +26,15 @@ public class Health : MonoBehaviour
     {
         if (Hp <= 0) { Death(); }
         if (knockback > 0) { Knockback(); }
+        if (Healthbar != null) {
+            if (Hp>MaxHp/2)
+            Healthbar.color = Color.Lerp(Color.yellow, Color.green, Hp/MaxHp*2-1);
+            else
+            Healthbar.color = Color.Lerp(Color.red, Color.yellow, Hp/MaxHp*2);
+
+            Healthbar.fillAmount = Hp / MaxHp;
+        }
+        
     }
 
     void Knockback()
