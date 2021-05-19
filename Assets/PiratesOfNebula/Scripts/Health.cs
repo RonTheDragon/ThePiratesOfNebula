@@ -25,7 +25,9 @@ public class Health : MonoBehaviour
     void Update()
     {
         if (Hp <= 0) { Death(); }
+
         if (knockback > 0) { Knockback(); }
+
         if (Healthbar != null) {
             if (Hp>MaxHp/2)
             Healthbar.color = Color.Lerp(Color.yellow, Color.green, Hp/MaxHp*2-1);

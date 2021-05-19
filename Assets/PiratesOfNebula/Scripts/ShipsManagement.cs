@@ -16,7 +16,7 @@ public class ShipsManagement : MonoBehaviour
   
     void Update()
     {
-   //     Healthbar.fillAmount = health.Hp / health.MaxHp;
+   
     }
 
     public void SwitchWeapons()
