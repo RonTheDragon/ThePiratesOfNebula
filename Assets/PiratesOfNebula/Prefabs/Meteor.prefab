@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 7371405489054994965}
   - component: {fileID: 7371405489054994970}
   - component: {fileID: -6307003925434471673}
-  - component: {fileID: 8005740323176742631}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Enemy
@@ -156,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 3
   Hp: 0
+  Healthbar: {fileID: 0}
   TurnOffWhenDeath: []
 --- !u!54 &7371405489054994970
 Rigidbody:
@@ -192,19 +192,3 @@ MonoBehaviour:
   DestroyOnImpact: 1
   CantHitPlayer: 0
   CantHitEnemy: 0
---- !u!114 &8005740323176742631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7371405489054994960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e1e493dbdfe2b54d9c3aee4b90fe363, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MinX: 490
-  MaxX: 450
-  MinZ: 490
-  MaxZ: 550

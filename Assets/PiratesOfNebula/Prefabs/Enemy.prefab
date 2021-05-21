@@ -212,11 +212,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHp: 10
-  Hp: 0
+  Hp: 10
   Healthbar: {fileID: 112341609655229937}
   TurnOffWhenDeath:
   - {fileID: 2552027404687969655}
   - {fileID: 3993143354713760685}
+  - {fileID: 3993143353781038196}
 --- !u!54 &2552027404687969661
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -379,7 +380,7 @@ GameObject:
   - component: {fileID: 3993143353781038195}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

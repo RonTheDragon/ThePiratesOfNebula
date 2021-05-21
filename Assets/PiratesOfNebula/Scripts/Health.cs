@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IpooledObject
 {
     public float MaxHp;
     public float Hp;
@@ -15,9 +15,12 @@ public class Health : MonoBehaviour
     public GameObject[] TurnOffWhenDeath;
     SpaceshipsAI SAI;
     // Start is called before the first frame update
-    void Start()
+    void IpooledObject.OnObjectSpawn()
     {
         Hp = MaxHp;
+    }
+    void Start()
+    {    
         SAI = gameObject.GetComponent<SpaceshipsAI>();
     }
 
@@ -71,4 +74,6 @@ public class Health : MonoBehaviour
         foreach(GameObject g in TurnOffWhenDeath)
         g.SetActive(false);
     }
+
+    
 }

@@ -61,7 +61,7 @@ public class PlayerControl : MonoBehaviour
         float Speed;
         Speed = MovementSpeed * jsd / 100 * (MoveAxl + 1);
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * Speed  * Time.deltaTime;
-        Vector3 Camdist = new Vector3(gameObject.transform.position.x, Cam.transform.position.y, gameObject.transform.position.z);
+        Vector3 Camdist = new Vector3(gameObject.transform.position.x+7, Cam.transform.position.y, gameObject.transform.position.z);
         float dist = Vector3.Distance(Camdist, Cam.transform.position);
         if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, Speed * 0.3f* dist * Time.deltaTime); }
         //Cam.transform.rotation = Quaternion.Euler(90,90,Spaceship.transform.rotation.eulerAngles.y-90);
