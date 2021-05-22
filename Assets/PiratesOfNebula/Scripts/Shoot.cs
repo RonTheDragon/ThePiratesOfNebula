@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour , IpooledObject
+public class Shoot : Damager , IpooledObject
 {
     public float Speed;
-    public float AttackDamage;
-    public float DamageCooldown;
-    public float Knockback;
-    float damagecooldown;
     public bool DestroyOnImpact;
-    public bool CantHitPlayer;
-    public bool CantHitEnemy;
     public bool DeclaredByShooter;
+    public bool CantHitSelf;
     public GameObject ShootBy;
     // Start is called before the Active
     public void OnObjectSpawn()
@@ -61,8 +56,15 @@ public class Shoot : MonoBehaviour , IpooledObject
             if (collision.gameObject.tag == HitableTag|| collision.gameObject.tag == HitableTag2)
             {
                 //Debug.Log("Boom! You Shot: " + collision.gameObject.name);
-                Health hp = collision.gameObject.GetComponent<Health>();
-                if (hp != null) { hp.Damage(AttackDamage,Knockback,gameObject); if (DestroyOnImpact) gameObject.SetActive(false); }
+                if (CantHitSelf == false || collision.gameObject != ShootBy) 
+                {
+                    Health hp = collision.gameObject.GetComponent<Health>();
+                    if (hp != null)
+                    {
+                        hp.Damage(AttackDamage, Knockback, gameObject);
+                        if (DestroyOnImpact) gameObject.SetActive(false);
+                    }
+                }
             }
         }
     }

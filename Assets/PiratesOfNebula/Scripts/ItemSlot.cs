@@ -36,7 +36,7 @@ public class ItemSlot : MonoBehaviour , IDropHandler
     void SetIcon()
     {
         Destroy(Icon);
-        Cannon c = Pc.Cannons[SlotNumber].GetComponent<Cannon>();
+        Weapon c = Pc.Cannons[SlotNumber].GetComponent<Weapon>();
         if (c != null)
         {
             GameObject i = Instantiate(c.WeaponIcon);

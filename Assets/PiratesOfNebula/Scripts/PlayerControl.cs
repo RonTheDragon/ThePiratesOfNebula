@@ -35,7 +35,7 @@ public class PlayerControl : SpaceShips
     // Start is called before the first frame update
     void Start()
     {
-        CS = new Cannon[Cannons.Length];
+        CS = new Weapon[Cannons.Length];
         LR = TheHook.GetComponent<LineRenderer>();
         ShootingSide = new bool[Cannons.Length];
         currency = transform.parent.GetComponent<Currency>();
@@ -267,7 +267,7 @@ public class PlayerControl : SpaceShips
     {
         if (CS[Side] == null)
         {
-            CS[Side] = Cannons[Side].GetComponent<Cannon>();
+            CS[Side] = Cannons[Side].GetComponent<Weapon>();
             
         }
         

@@ -44,7 +44,7 @@ public class ShipsManagement : MonoBehaviour
         int count = 0;
         foreach (GameObject w in Weapons)
         {
-            Cannon c = w.GetComponent<Cannon>();
+            Weapon c = w.GetComponent<Weapon>();
             if (c != null)
             {
                 GameObject i = Instantiate(c.WeaponIcon);

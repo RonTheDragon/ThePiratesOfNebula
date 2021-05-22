@@ -5941,9 +5941,9 @@ GameObject:
   - component: {fileID: 576979877874080808}
   - component: {fileID: 3217979461848914148}
   - component: {fileID: 490775506}
-  - component: {fileID: 490775505}
   - component: {fileID: 490775507}
   - component: {fileID: 490775508}
+  - component: {fileID: 7244986238100553119}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Player
@@ -5995,27 +5995,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 1
---- !u!114 &490775505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 576979877874080809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608a1f1234c86694e8105a282e170844, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 0
-  AttackDamage: 5
-  DamageCooldown: 1
-  Knockback: 20
-  DestroyOnImpact: 0
-  CantHitPlayer: 1
-  CantHitEnemy: 0
-  DeclaredByShooter: 0
-  ShootBy: {fileID: 0}
 --- !u!114 &490775507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6071,6 +6050,23 @@ MonoBehaviour:
   SwitchJoysickToUndock:
   - {fileID: 2352870542482051233}
   - {fileID: 474140875957175493}
+--- !u!114 &7244986238100553119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576979877874080809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4df63e8e8e0a045a62e2372700debb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackDamage: 30
+  Knockback: 20
+  CantHitPlayer: 1
+  CantHitEnemy: 0
+  DamageCooldown: 1
 --- !u!1 &576979878103621742
 GameObject:
   m_ObjectHideFlags: 0

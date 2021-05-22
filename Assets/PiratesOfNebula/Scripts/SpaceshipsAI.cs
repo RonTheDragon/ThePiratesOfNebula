@@ -20,7 +20,7 @@ public class SpaceshipsAI : SpaceShips
     // Start is called before the first frame update
     void Start()
     {
-        CS = new Cannon[Cannons.Length];
+        CS = new Weapon[Cannons.Length];
         hp = gameObject.GetComponent<Health>();
         hookAble = gameObject.GetComponent<Hookable>();       
     }
@@ -117,7 +117,7 @@ public class SpaceshipsAI : SpaceShips
             {
                 if (CS[count] == null)
                 {
-                    CS[count] = C.GetComponent<Cannon>();
+                    CS[count] = C.GetComponent<Weapon>();
                     
                 }
 

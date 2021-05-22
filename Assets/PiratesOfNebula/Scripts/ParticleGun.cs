@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : Weapon
+public class ParticleGun : Weapon
 {
-    ObjectPooler objectPooler;
-    public string PrefabShot;
+    ParticleSystem Particle;
+    ParticleDamage PD;
+    public int ParticleAmount;
 
     // Start is called before the first frame update
     void Start()
     {
-        objectPooler = ObjectPooler.Instance;
+        Particle = GunPoint.GetComponent<ParticleSystem>();
+        PD = Particle.gameObject.GetComponent<ParticleDamage>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class Cannon : Weapon
 
     public override void Shooting(GameObject Owner)
     {
-        objectPooler.SpawnFromPool(PrefabShot, GunPoint.transform.position, GunPoint.transform.rotation).GetComponent<Shoot>().ShootBy = Owner;
+        if (PD.ShootBy == null) PD.ShootBy = Owner;
+        Particle.Emit(ParticleAmount);
     }
 }

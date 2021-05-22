@@ -142,8 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHp: 20
   Hp: 0
+  HpRegan: 0
   Healthbar: {fileID: 0}
-  TurnOffWhenDeath: []
+  TurnOffWhenDeath:
+  - {fileID: 7371405489054994960}
 --- !u!54 &7371405489054994970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,14 +174,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608a1f1234c86694e8105a282e170844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
   AttackDamage: 30
-  DamageCooldown: 1
   Knockback: 20
-  DestroyOnImpact: 1
   CantHitPlayer: 0
   CantHitEnemy: 0
+  DamageCooldown: 1
+  Speed: 1
+  DestroyOnImpact: 1
   DeclaredByShooter: 0
+  CantHitSelf: 0
   ShootBy: {fileID: 0}
 --- !u!114 &1703134776796330698
 MonoBehaviour:
