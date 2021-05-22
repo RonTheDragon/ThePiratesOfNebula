@@ -7,10 +7,8 @@ public class RandomSpawn : MonoBehaviour
     public GameObject Spaceship;
     public string[] Spawnables;
     ObjectPooler objectPooler;
-    public float MinX;
-    public float MaxX;
-    public float MinZ;
-    public float MaxZ;
+    public float MinDist;
+    public float MaxDist;
 
 
     // Start is called before the first frame update
@@ -31,13 +29,15 @@ public class RandomSpawn : MonoBehaviour
     void Spawn(string prefab)
     {
         
-        float x = Random.Range(MinX, MaxX + 1);
+        float x = Random.Range(MinDist, MaxDist + 1);
         if (Random.Range(0,2) == 0) { x *= -1; }
-        float z = Random.Range(MinZ, MaxZ + 1);
+        float z = Random.Range(MinDist, MaxDist + 1);
         if (Random.Range(0, 2) == 0) { z *= -1; }
         float r = Random.Range(0, 361);
         Vector3 pos = new Vector3(Spaceship.transform.position.x+x, Spaceship.transform.position.y, Spaceship.transform.position.z+z);
         GameObject ob = objectPooler.SpawnFromPool(prefab, pos, transform.rotation);
+        ob.GetComponent<SpawnedMechanic>().SummonedByThePlayer = Spaceship;
+        
        // ob.transform.Rotate(0, r, 0);
         
     }

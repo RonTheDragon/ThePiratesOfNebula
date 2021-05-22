@@ -25,7 +25,7 @@ public class Cannon : MonoBehaviour
         if (cooldown > 0) { cooldown -= Time.deltaTime; }
     }
 
-    public void Shoot()
+    public void Shoot(GameObject Owner)
     {
         if (cooldown <= 0)
         {
@@ -36,14 +36,14 @@ public class Cannon : MonoBehaviour
             }
             else
             {
-                objectPooler.SpawnFromPool(PrefabShot, GunPoint.transform.position, GunPoint.transform.rotation);
+                objectPooler.SpawnFromPool(PrefabShot, GunPoint.transform.position, GunPoint.transform.rotation).GetComponent<Shoot>().ShootBy = Owner;
             }
         }
         if (ExtraCannons.Length > 0)
         {
             foreach(Cannon c in ExtraCannons)
             {
-                c.Shoot();
+                c.Shoot(Owner);
             }
         }
     }

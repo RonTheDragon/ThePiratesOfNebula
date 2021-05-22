@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceshipsAI : MonoBehaviour
+public class SpaceshipsAI : SpaceShips
 {
     public float Speed;
     public float RotationSpeed;
     public float DetectionRange;
-    public GameObject[] Cannons;
+    public GameObject[] Weapons;
+  //  public GameObject[] Cannons;
     float RandomMovement;
     int RandomDirection;
     float ScanCooldown;
-    Cannon[] CS;
-    GameObject Target;
+  //  Cannon[] CS;
+    public GameObject Target;
     Hookable hookAble;
     Health hp;
 
@@ -75,7 +76,7 @@ public class SpaceshipsAI : MonoBehaviour
         }
     }
 
-    void Movement()
+    protected override void Movement()
     {
         CheckForDodge();
 
@@ -98,7 +99,7 @@ public class SpaceshipsAI : MonoBehaviour
             else if (RandomDirection == 3) { transform.Rotate(0, -RotationSpeed *10* Time.deltaTime, 0); }
         }
     }
-    void Combat()
+    protected override void Combat()
     {
         if (Target == null) //Scanning For Target
         {
@@ -117,6 +118,7 @@ public class SpaceshipsAI : MonoBehaviour
                 if (CS[count] == null)
                 {
                     CS[count] = C.GetComponent<Cannon>();
+                    
                 }
 
                 RaycastHit hit;
@@ -125,7 +127,7 @@ public class SpaceshipsAI : MonoBehaviour
                     //Debug.DrawRay(C.transform.position, C.transform.forward * hit.distance, Color.yellow);
                     if (hit.transform == Target.transform)
                     {
-                        CS[count].Shoot();
+                        CS[count].Shoot(gameObject);
                     }
                 }
                 count++;
@@ -133,6 +135,16 @@ public class SpaceshipsAI : MonoBehaviour
 
             float dist = Vector3.Distance(Target.transform.position, transform.position);
             if (dist > DetectionRange * 4) { Target = null; } //Losing Target
+        }
+    }
+
+    public void SwitchWeapons()
+    {
+        int n = 0;
+        foreach(GameObject c in Cannons)
+        {
+            ChangeWeapon(Weapons[Random.Range(0, Weapons.Length)], n);
+            n++;
         }
     }
    

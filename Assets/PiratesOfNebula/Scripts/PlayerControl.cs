@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControl : MonoBehaviour
+public class PlayerControl : SpaceShips
 {
     public GameObject TheHook;
     LineRenderer LR;
@@ -14,14 +14,16 @@ public class PlayerControl : MonoBehaviour
     private bool docked;
     public GameObject TheHooked;
     private float TheHookedRange;
-    public GameObject[] Cannons; //0 Front , 1 Back , 2 Right , 3 Left
-    public GameObject[] CannonHolders;
-    Cannon[] CS;
+   // public GameObject[] Cannons; //0 Front , 1 Back , 2 Right , 3 Left
+   // public GameObject[] CannonHolders;
+   // Cannon[] CS;
     bool[] ShootingSide;
     public Camera Cam;
     public Joystick joystick;
     public Transform joystickH;
+    public Transform JoystickLimit;
     public float jsd;
+    public float Maxjsd;
     bool NotMoving;
     private float RotateShip;
     private float RememberRotation;
@@ -46,22 +48,25 @@ public class PlayerControl : MonoBehaviour
         
         Movement();
         Combat();
-        
+        HookingMechanic();
+
     }
-    void Movement()
+    protected override void Movement()
     {
         jsd = Vector3.Distance(joystick.transform.position, joystickH.position); //Joystick Distance
+        Maxjsd = Vector3.Distance(joystick.transform.position, JoystickLimit.position);
+        jsd = jsd / Maxjsd;
         if (jsd == 0 && docked==false) NotMoving = true;
         else NotMoving = false;
-        if (jsd < 50) jsd = 50;
+        if (jsd < 0.4f) jsd = 0.4f;
 
-        if (jsd > 100) { MoveAxl += 0.1f * Time.deltaTime; }
+        if (jsd > 0.9f) { MoveAxl += 0.1f * Time.deltaTime; }
         else { MoveAxl -= 0.3f * Time.deltaTime; }
         if (MoveAxl < 0) MoveAxl= 0; else if (MoveAxl > 1) MoveAxl = 1;
         float Speed;
-        Speed = MovementSpeed * jsd / 100 * (MoveAxl + 1);
+        Speed = MovementSpeed * jsd  * (MoveAxl + 1);
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * Speed  * Time.deltaTime;
-        Vector3 Camdist = new Vector3(gameObject.transform.position.x+7, Cam.transform.position.y, gameObject.transform.position.z);
+        Vector3 Camdist = new Vector3(gameObject.transform.position.x+7, Cam.transform.position.y, gameObject.transform.position.z); //THIS IS THE CAM LOCATION!!!!!
         float dist = Vector3.Distance(Camdist, Cam.transform.position);
         if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, Speed * 0.3f* dist * Time.deltaTime); }
         //Cam.transform.rotation = Quaternion.Euler(90,90,Spaceship.transform.rotation.eulerAngles.y-90);
@@ -107,7 +112,7 @@ public class PlayerControl : MonoBehaviour
             else if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(-RS, 0, 0); }
         }
     }
-    void Combat()
+    protected override void Combat()
     {
         int count = 0;
         foreach (bool s in ShootingSide) //Attack
@@ -115,6 +120,10 @@ public class PlayerControl : MonoBehaviour
             if (s) { Attack(count); }
             count++;
         }
+    }
+
+    public void HookingMechanic()
+    {
 
         if (TheHook.activeSelf == true) //Set Rope
         {
@@ -132,7 +141,7 @@ public class PlayerControl : MonoBehaviour
                 SwitchJoysickToUndock[1].SetActive(false);
             }
         }
-        
+
         if (hookingStep == 0) // Hook Back / Not Hooking
         {
             if (TheHook.activeSelf == true)
@@ -148,7 +157,7 @@ public class PlayerControl : MonoBehaviour
         }
         else
         {
-            
+
             if (hookingStep == 1) //hook Forward
             {
 
@@ -160,14 +169,17 @@ public class PlayerControl : MonoBehaviour
                 {
                     hookingStep = 2;
                 }
+                if (dist > 30) { StopHooking(); }
             }
 
             if (hookingStep == 2) //hook Connected
             {
 
                 float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance 
-                TheHook.transform.position = TheHooked.transform.position;  
-                
+                TheHook.transform.position = TheHooked.transform.position;
+
+               
+
                 if (dist < TheHookedRange && !docked && NotMoving)
                 {
                     hookingStep = 3; docked = true; MilkingTime = 1;
@@ -182,17 +194,17 @@ public class PlayerControl : MonoBehaviour
                     if (dist > pullingSpeed) { pullingSpeed = dist; }
                     TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, pullingSpeed * 1.5f * Time.deltaTime);
                 }
-                else 
+                else
                 {
                     TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, dist * Time.deltaTime);
                 }
 
-
+                if (dist > 30) { StopHooking(); }
             }
 
             if (hookingStep == 3) //Docked
             {
-                
+
                 float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance 
 
                 TheHook.transform.position = TheHooked.transform.position;
@@ -223,11 +235,11 @@ public class PlayerControl : MonoBehaviour
                     }
                 }
                 else { MilkingTime -= Time.deltaTime; }
+
+                if (dist > 30) { StopHooking(); }
             }
 
         }
-
-
     }
 
 
@@ -256,8 +268,10 @@ public class PlayerControl : MonoBehaviour
         if (CS[Side] == null)
         {
             CS[Side] = Cannons[Side].GetComponent<Cannon>();
+            
         }
-        CS[Side].Shoot();
+        
+        CS[Side].Shoot(gameObject);
     }
 
     public void Hook(GameObject Thehooked, float THR)
@@ -275,12 +289,5 @@ public class PlayerControl : MonoBehaviour
     {
         hookingStep = 0; TheHooked = null; TheHookedRange = 0;  
     }
-    public void ChangeWeapon(GameObject Weapon, int WhichCannon)
-    {
-        Destroy(Cannons[WhichCannon]);
-        Cannons[WhichCannon] = Instantiate(Weapon);
-        Cannons[WhichCannon].transform.position = CannonHolders[WhichCannon].transform.position;
-        Cannons[WhichCannon].transform.rotation = CannonHolders[WhichCannon].transform.rotation;
-        Cannons[WhichCannon].transform.SetParent(CannonHolders[WhichCannon].transform);
-    }
+    
 }

@@ -12,6 +12,8 @@ public class Shoot : MonoBehaviour , IpooledObject
     public bool DestroyOnImpact;
     public bool CantHitPlayer;
     public bool CantHitEnemy;
+    public bool DeclaredByShooter;
+    public GameObject ShootBy;
     // Start is called before the Active
     public void OnObjectSpawn()
     {
@@ -31,6 +33,21 @@ public class Shoot : MonoBehaviour , IpooledObject
             damagecooldown = DamageCooldown;
             string HitableTag=null;
             string HitableTag2=null;
+            
+                if (DeclaredByShooter)
+                {
+                    if (ShootBy.gameObject.tag == "Player")
+                    {
+                        CantHitEnemy = false;
+                        CantHitPlayer = true;
+                    }
+                    else if (ShootBy.gameObject.tag == "Enemy")
+                    {
+                        CantHitEnemy = true;
+                        CantHitPlayer = false;
+                    }
+                }
+            
             if (!CantHitPlayer)
             {
                 HitableTag = "Player";

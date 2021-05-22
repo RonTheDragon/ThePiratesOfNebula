@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3672667989232578674}
   - component: {fileID: 5710167444225473867}
   - component: {fileID: 7274772523277023133}
-  - component: {fileID: 4363898693611043074}
   m_Layer: 0
   m_Name: PlaceHolder
   m_TagString: Untagged
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &4363898693611043074
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5078580478361418769}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7371405489054994960
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +92,7 @@ GameObject:
   - component: {fileID: 7371405489054994965}
   - component: {fileID: 7371405489054994970}
   - component: {fileID: -6307003925434471673}
+  - component: {fileID: 1703134776796330698}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Enemy
@@ -153,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35143671b7f90d44b643be14b2068cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHp: 3
+  MaxHp: 20
   Hp: 0
   Healthbar: {fileID: 0}
   TurnOffWhenDeath: []
@@ -192,3 +179,22 @@ MonoBehaviour:
   DestroyOnImpact: 1
   CantHitPlayer: 0
   CantHitEnemy: 0
+  DeclaredByShooter: 0
+  ShootBy: {fileID: 0}
+--- !u!114 &1703134776796330698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371405489054994960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1378dcc3be5648a439e64d31fed79e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonedByThePlayer: {fileID: 0}
+  DistantBody: {fileID: 7371405489054994960}
+  health: {fileID: 7371405489054994965}
+  hookable: {fileID: 0}
+  spaceshipsAI: {fileID: 0}

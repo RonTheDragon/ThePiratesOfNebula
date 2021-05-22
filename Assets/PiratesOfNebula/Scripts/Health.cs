@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour, IpooledObject
+public class Health : MonoBehaviour
 {
     public float MaxHp;
     public float Hp;
+    public float HpRegan;
     public Image Healthbar;
     float knockback;
     GameObject Attacker;
     Vector3 V3Knockback;
-    Vector3 no;
+    Vector3 no = new Vector3();
     public GameObject[] TurnOffWhenDeath;
     SpaceshipsAI SAI;
     // Start is called before the first frame update
-    void IpooledObject.OnObjectSpawn()
-    {
-        Hp = MaxHp;
-    }
+    
     void Start()
-    {    
+    {
+        Spawn();
         SAI = gameObject.GetComponent<SpaceshipsAI>();
     }
 
@@ -28,6 +27,9 @@ public class Health : MonoBehaviour, IpooledObject
     void Update()
     {
         if (Hp <= 0) { Death(); }
+        else if (Hp > MaxHp) { Hp = MaxHp; }
+        else if (HpRegan > 0 && Hp<MaxHp) { Hp += HpRegan * Time.deltaTime; }
+        
 
         if (knockback > 0) { Knockback(); }
 
@@ -40,6 +42,11 @@ public class Health : MonoBehaviour, IpooledObject
             Healthbar.fillAmount = Hp / MaxHp;
         }
         
+    }
+
+    public void Spawn()
+    {
+        Hp = MaxHp;
     }
 
     void Knockback()

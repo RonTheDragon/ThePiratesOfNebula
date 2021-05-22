@@ -108,12 +108,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 30
-  AttackDamage: 1
+  AttackDamage: 10
   DamageCooldown: 1
   Knockback: 10
   DestroyOnImpact: 1
   CantHitPlayer: 1
   CantHitEnemy: 0
+  DeclaredByShooter: 1
+  ShootBy: {fileID: 0}
 --- !u!54 &-3568049424660945427
 Rigidbody:
   m_ObjectHideFlags: 0

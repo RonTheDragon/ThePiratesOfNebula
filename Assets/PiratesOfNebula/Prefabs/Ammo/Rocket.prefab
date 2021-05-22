@@ -56,12 +56,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 20
-  AttackDamage: 3
+  AttackDamage: 30
   DamageCooldown: 1
   Knockback: 30
   DestroyOnImpact: 1
   CantHitPlayer: 1
   CantHitEnemy: 0
+  DeclaredByShooter: 1
+  ShootBy: {fileID: 0}
 --- !u!54 &3567979688956435115
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -89,8 +91,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.083229, y: 0.81361794, z: 0.9227227}
-  m_Center: {x: 0.041614737, y: -0.09319103, z: -0.012963323}
+  m_Size: {x: 5.5463257, y: 0.6689272, z: 0.9227227}
+  m_Center: {x: -0.39587402, y: 0.16306257, z: -0.012963325}
 --- !u!1 &3443570593953489154
 GameObject:
   m_ObjectHideFlags: 0
