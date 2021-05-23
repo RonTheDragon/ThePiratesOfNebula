@@ -91,8 +91,8 @@ GameObject:
   - component: {fileID: 7371405489054994961}
   - component: {fileID: 7371405489054994965}
   - component: {fileID: 7371405489054994970}
-  - component: {fileID: -6307003925434471673}
   - component: {fileID: 1703134776796330698}
+  - component: {fileID: -6307003925434471673}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Enemy
@@ -162,6 +162,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1703134776796330698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7371405489054994960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1378dcc3be5648a439e64d31fed79e27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SummonedByThePlayer: {fileID: 0}
+  DistantBody: {fileID: 7371405489054994960}
+  health: {fileID: 7371405489054994965}
+  hookable: {fileID: 0}
+  spaceshipsAI: {fileID: 0}
 --- !u!114 &-6307003925434471673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,20 +201,3 @@ MonoBehaviour:
   DeclaredByShooter: 0
   CantHitSelf: 0
   ShootBy: {fileID: 0}
---- !u!114 &1703134776796330698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7371405489054994960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1378dcc3be5648a439e64d31fed79e27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SummonedByThePlayer: {fileID: 0}
-  DistantBody: {fileID: 7371405489054994960}
-  health: {fileID: 7371405489054994965}
-  hookable: {fileID: 0}
-  spaceshipsAI: {fileID: 0}

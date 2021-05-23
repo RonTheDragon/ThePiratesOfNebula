@@ -34,7 +34,12 @@ public class Hookable : MonoBehaviour
         }
         if (Pc != null)
         {
-            if (hp.Hp < 0 || Pc.hookingStep == 3||Pc.TheHooked!=gameObject && Pc.hookingStep>0||hp.Hp==hp.MaxHp) { Canvas.SetActive(false); } //if Dead/docked/hooking step while not being hooked/full hp
+            if (hp.Hp < 0 || Pc.hookingStep == 3||Pc.TheHooked!=gameObject && Pc.hookingStep>0||hp.Hp==hp.MaxHp) //if Dead/docked/hooking step while not being hooked/full hp
+            {
+                Canvas.SetActive(false);
+                Buttons[0].SetActive(false);
+                Buttons[1].SetActive(false);
+            } 
             else
             {
                 Canvas.SetActive(true);

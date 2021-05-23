@@ -204,7 +204,10 @@ public class PlayerControl : SpaceShips
 
             if (hookingStep == 3) //Docked
             {
-
+                if (pudge == null)
+                {
+                    pudge = TheHooked.GetComponent<Hookable>();
+                }
                 float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance 
 
                 TheHook.transform.position = TheHooked.transform.position;
@@ -219,19 +222,18 @@ public class PlayerControl : SpaceShips
                 if (MilkingTime <= 0)
                 {
                     MilkingTime = 1;
-                    if (pudge == null)
+                    if (pudge != null)
                     {
-                        pudge = TheHooked.GetComponent<Hookable>();
-                    }
-                    else if (pudge.Money > 10)
-                    {
-                        currency.Money += pudge.Money / 2;
-                        pudge.Money -= pudge.Money / 2;
-                    }
-                    else if (pudge.Money > 0)
-                    {
-                        currency.Money += pudge.Money;
-                        pudge.Money = 0;
+                        if (pudge.Money > 10)
+                        {
+                            currency.Money += pudge.Money / 2;
+                            pudge.Money -= pudge.Money / 2;
+                        }
+                        else if (pudge.Money > 0)
+                        {
+                            currency.Money += pudge.Money;
+                            pudge.Money = 0;
+                        }
                     }
                 }
                 else { MilkingTime -= Time.deltaTime; }
@@ -250,6 +252,7 @@ public class PlayerControl : SpaceShips
         SwitchJoysickToUndock[1].SetActive(false);
         if (pudge != null)
         {
+            pudge.Buttons[1].SetActive(true);
             pudge = null;
         }
     }

@@ -12,9 +12,15 @@ public class SpawnedMechanic : MonoBehaviour, IpooledObject
 
     public void OnObjectSpawn() //When Spawned
     {
+        if (DistantBody != null)
+        {
+            DistantBody.transform.position = new Vector3(transform.position.x, DistantBody.transform.position.y, transform.position.z);
+        }
+        //Debug.Log("works");
         if (health != null)
         {
             health.Hp = health.MaxHp;
+            //Debug.Log(health.gameObject.name + " " +health.Hp);
             foreach(GameObject g in health.TurnOffWhenDeath)
             {
                 g.SetActive(true);
@@ -23,11 +29,13 @@ public class SpawnedMechanic : MonoBehaviour, IpooledObject
         if (hookable != null)
         {
             hookable.Money = hookable.StartMoney;
+            hookable.hookable = false;
         }
         if (spaceshipsAI != null)
         {
             spaceshipsAI.SwitchWeapons();
         }      
+
     }
     
 

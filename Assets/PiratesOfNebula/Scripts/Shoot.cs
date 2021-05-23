@@ -12,7 +12,7 @@ public class Shoot : Damager , IpooledObject
     // Start is called before the Active
     public void OnObjectSpawn()
     {
-
+        
     }
 
     // Update is called once per frame
