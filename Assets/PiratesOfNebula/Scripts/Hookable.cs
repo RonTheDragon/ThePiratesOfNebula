@@ -19,9 +19,9 @@ public class Hookable : MonoBehaviour
     {
         hp = gameObject.GetComponent<Health>(); 
     }
-
+    
     // Update is called once per frame
-    void Update()
+    void Update() 
     {
         if (Pc == null)
         {

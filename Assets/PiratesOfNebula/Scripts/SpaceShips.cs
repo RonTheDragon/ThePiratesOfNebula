@@ -1,16 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class SpaceShips : MonoBehaviour
 {
     public GameObject[] Cannons; //0 Front , 1 Back , 2 Right , 3 Left
     public GameObject[] CannonHolders;
     protected Weapon[] CS;
-    
+    public float MaxHeat=100;
+    public float Heat;
+    public float CoolingHeat=30;
+    protected bool OverHeated;
+    public Image Heatbar;
 
     protected abstract void Movement();
     protected abstract void Combat();
+
+    protected void Update()
+    {
+        HeatSystem();
+    }
 
     public void ChangeWeapon(GameObject Weapon, int WhichCannon)
     {
@@ -22,5 +32,17 @@ public abstract class SpaceShips : MonoBehaviour
         CS = new Weapon[Cannons.Length];
         CS[WhichCannon] = Cannons[WhichCannon].GetComponent<Weapon>();
         
+    }
+    public void HeatSystem()
+    {
+        if (Heatbar != null)
+        {
+            if (OverHeated) Heatbar.color = Color.red;
+            else Heatbar.color = Color.Lerp(Color.yellow, Color.red, Heat / (MaxHeat*1.5f));
+            Heatbar.fillAmount = Heat / MaxHeat;
+        }
+        if (Heat> 100) { OverHeated = true; Heat = 100; }
+        else if (Heat > 0) { Heat -= CoolingHeat * Time.deltaTime; }
+        else if (Heat < 0) { OverHeated = false; Heat = 0;}
     }
 }

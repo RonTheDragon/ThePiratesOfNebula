@@ -100,6 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GunPoint: {fileID: 8202119870584100516}
   Cooldown: 0.01
+  HeatGain: 1
   ExtraCannons: []
   WeaponIcon: {fileID: 6070576128485442663}
   ParticleAmount: 1

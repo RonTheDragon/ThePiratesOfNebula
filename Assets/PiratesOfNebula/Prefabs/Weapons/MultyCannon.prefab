@@ -259,13 +259,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunPoint: {fileID: 885372974212954460}
-  PrefabShot: Test
-  ParticleShot: 0
   Cooldown: 0.2
+  HeatGain: 15
   ExtraCannons:
   - {fileID: 2916342118075152573}
   - {fileID: 9065846499205445346}
   WeaponIcon: {fileID: 835474813803870963}
+  PrefabShot: Test
 --- !u!1001 &3994181446101811935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -277,6 +277,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExtraCannon2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385871428572755005, guid: 487098a50ce8b9d428623919b45a4883,
+        type: 3}
+      propertyPath: HeatGain
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
@@ -364,6 +369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExtraCannon1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5385871428572755005, guid: 487098a50ce8b9d428623919b45a4883,
+        type: 3}
+      propertyPath: HeatGain
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}

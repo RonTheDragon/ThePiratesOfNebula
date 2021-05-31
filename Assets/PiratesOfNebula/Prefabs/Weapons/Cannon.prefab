@@ -47,11 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunPoint: {fileID: 9063688212508114044}
-  PrefabShot: Test
-  ParticleShot: 0
   Cooldown: 0.2
+  HeatGain: 5
   ExtraCannons: []
   WeaponIcon: {fileID: 7510486761538555464}
+  PrefabShot: Test
 --- !u!1 &7510486761538555464
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public abstract class Weapon : MonoBehaviour
 {
     public GameObject GunPoint;
     public float Cooldown = 0.2f;
+    public float HeatGain;
     protected float cooldown;
     public Cannon[] ExtraCannons;
     public GameObject WeaponIcon;
@@ -17,7 +18,14 @@ public abstract class Weapon : MonoBehaviour
         {
             cooldown = Cooldown;
             Shooting(Owner);
-
+            if (HeatGain > 0)
+            {
+                SpaceShips ship = Owner.GetComponent<SpaceShips>();
+                if (ship != null)
+                {
+                    ship.Heat += HeatGain;
+                }
+            }
         }
         if (ExtraCannons.Length > 0)
         {

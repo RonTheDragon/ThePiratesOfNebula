@@ -257,8 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunPoint: {fileID: 1912898480634875196}
-  PrefabShot: Rocket
-  ParticleShot: 0
   Cooldown: 0.8
+  HeatGain: 40
   ExtraCannons: []
   WeaponIcon: {fileID: 1115151677349379848}
+  PrefabShot: Rocket

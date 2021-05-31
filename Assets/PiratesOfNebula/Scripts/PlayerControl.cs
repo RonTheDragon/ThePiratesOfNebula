@@ -43,9 +43,9 @@ public class PlayerControl : SpaceShips
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
         Movement();
         Combat();
         HookingMechanic();
@@ -228,6 +228,7 @@ public class PlayerControl : SpaceShips
                         {
                             currency.Money += pudge.Money / 2;
                             pudge.Money -= pudge.Money / 2;
+                            
                         }
                         else if (pudge.Money > 0)
                         {
@@ -273,7 +274,7 @@ public class PlayerControl : SpaceShips
             CS[Side] = Cannons[Side].GetComponent<Weapon>();
             
         }
-        
+        if (OverHeated == false)
         CS[Side].Shoot(gameObject);
     }
 

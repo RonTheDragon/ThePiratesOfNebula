@@ -25,8 +25,9 @@ public class SpaceshipsAI : SpaceShips
         hookAble = gameObject.GetComponent<Hookable>();       
     }
         // Update is called once per frame
-        void Update()
+        new void Update()
     {
+        base.Update();
         if (!hookAble.hookable)
         {
             Movement();
@@ -125,9 +126,9 @@ public class SpaceshipsAI : SpaceShips
                 if (Physics.Raycast(CS[count].GunPoint.transform.position, CS[count].GunPoint.transform.forward, out hit, Mathf.Infinity))
                 {
                     //Debug.DrawRay(C.transform.position, C.transform.forward * hit.distance, Color.yellow);
-                    if (hit.transform == Target.transform)
+                    if (hit.transform == Target.transform && OverHeated==false)
                     {
-                        CS[count].Shoot(gameObject);
+                        CS[count].Shoot(gameObject);       
                     }
                 }
                 count++;
