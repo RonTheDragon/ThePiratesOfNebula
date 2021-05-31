@@ -351,23 +351,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6cb8621a6e5f3d40a8585cb0d7929d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pools:
-  - tag: Test
-    prefab: {fileID: 7950547668535263706, guid: 1539d6c72d6067d4aa8671b7867f3c58,
-      type: 3}
-    size: 20
-  - tag: Rocket
-    prefab: {fileID: 1272754628145479324, guid: 4cde5d5ed1e12f943984db09ba59c2de,
-      type: 3}
-    size: 20
-  - tag: Meteor
-    prefab: {fileID: 7371405489054994960, guid: a10a525b5a8541844b61f6c7a5dceb5f,
-      type: 3}
-    size: 20
-  - tag: EnemyShip
-    prefab: {fileID: 3993143353781038196, guid: 036f1c639aef31348bf80e667e3426df,
-      type: 3}
-    size: 50
+  Groups:
+  - tag: Ammo
+    pools:
+    - tag: Test
+      prefab: {fileID: 7950547668535263706, guid: 1539d6c72d6067d4aa8671b7867f3c58,
+        type: 3}
+      size: 20
+    - tag: Rocket
+      prefab: {fileID: 1272754628145479324, guid: 4cde5d5ed1e12f943984db09ba59c2de,
+        type: 3}
+      size: 20
+  - tag: Enemies
+    pools:
+    - tag: EnemyShip
+      prefab: {fileID: 3993143353781038196, guid: 036f1c639aef31348bf80e667e3426df,
+        type: 3}
+      size: 50
+    - tag: Meteor
+      prefab: {fileID: 7371405489054994960, guid: a10a525b5a8541844b61f6c7a5dceb5f,
+        type: 3}
+      size: 20
 --- !u!1001 &576979877660147687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -434,11 +438,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 576979878139067030, guid: f232ca76f4d82b142ae7116b6e0c27db,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}

@@ -49,9 +49,10 @@ public class ShipsManagement : MonoBehaviour
             {
                 GameObject i = Instantiate(c.WeaponIcon);
                 // i.transform.parent = Menus[1].transform;
-                i.transform.SetParent(Menus[1].transform);
+                i.transform.SetParent(Menus[1].transform,false);
                 RectTransform r = i.GetComponent<RectTransform>();
                 DragAndDrop d = i.GetComponent<DragAndDrop>();
+                
                 d.TheWeapon = w;
                 r.anchoredPosition = new Vector3(x, y);
                 count++;

@@ -11,6 +11,12 @@ public class ObjectPooler : MonoBehaviour
         public GameObject prefab;
         public int size;
     }
+    [System.Serializable]
+    public class Group
+    {
+        public string tag;
+        public List<Pool> pools;
+    }
     #region Singleton
     public static ObjectPooler Instance;
 
@@ -20,7 +26,7 @@ public class ObjectPooler : MonoBehaviour
     }
     #endregion
 
-    public List<Pool> pools;
+    public List<Group> Groups;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
 
@@ -28,8 +34,10 @@ public class ObjectPooler : MonoBehaviour
     void Start()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        foreach (Pool pool in pools)
+        foreach (Group g in Groups)
         {
+            foreach (Pool pool in g.pools)
+           {
             Queue<GameObject> objectPool = new Queue<GameObject>();
             for (int i = 0; i < pool.size; i++)
             {
@@ -38,7 +46,9 @@ public class ObjectPooler : MonoBehaviour
                 objectPool.Enqueue(obj);
             }
             poolDictionary.Add(pool.tag, objectPool);
+           }
         }
+        
     }
 
     public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)

@@ -15,7 +15,8 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
     {
         icon = GetComponent<RectTransform>();
         cg = GetComponent<CanvasGroup>();
-    }
+      //  icon.localScale = new Vector3() { x = canvas.scaleFactor, y = canvas.scaleFactor, z = canvas.scaleFactor };
+        }
 
     // Start is called before the first frame update
     void Start()
