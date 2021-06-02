@@ -22,7 +22,7 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
     void Start()
     {
         startPosition = icon.anchoredPosition;
-        canvas = gameObject.transform.parent.parent.GetComponent<Canvas>();
+        canvas = transform.parent.parent.parent.GetComponent<Canvas>(); // oh great father
     }
 
     // Update is called once per frame

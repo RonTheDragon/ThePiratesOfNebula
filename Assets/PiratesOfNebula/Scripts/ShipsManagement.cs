@@ -6,7 +6,8 @@ public class ShipsManagement : MonoBehaviour
 {
     public GameObject Spaceship;
     public GameObject[] Menus;
-    public GameObject[] Weapons;
+    public GameObject WeaponsList;
+    public List<GameObject> Weapons;
 
     void Start()
     {
@@ -29,6 +30,13 @@ public class ShipsManagement : MonoBehaviour
         ChangeMenu(0);   
         Time.timeScale = 1;
     }
+    public void VisitShop()
+    {
+        GetComponent<Currency>().Shop();
+        ChangeMenu(2);
+        Time.timeScale = 0;
+    }
+
     void ChangeMenu(int Menu)
     {
         foreach(GameObject m in Menus)
@@ -37,8 +45,12 @@ public class ShipsManagement : MonoBehaviour
         }
         Menus[Menu].SetActive(true);
     }
-    void setWeaponSwitching()
+    public void setWeaponSwitching()
     {
+        foreach(Transform g in WeaponsList.transform)
+        {
+            Destroy(g.gameObject);
+        }
         int x = -350;
         int y = 150;
         int count = 0;
@@ -49,7 +61,7 @@ public class ShipsManagement : MonoBehaviour
             {
                 GameObject i = Instantiate(c.WeaponIcon);
                 // i.transform.parent = Menus[1].transform;
-                i.transform.SetParent(Menus[1].transform,false);
+                i.transform.SetParent(WeaponsList.transform,false);
                 RectTransform r = i.GetComponent<RectTransform>();
                 DragAndDrop d = i.GetComponent<DragAndDrop>();
                 

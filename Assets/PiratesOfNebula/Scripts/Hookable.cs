@@ -37,8 +37,8 @@ public class Hookable : MonoBehaviour
             if (hp.Hp < 0 || Pc.hookingStep == 3||Pc.TheHooked!=gameObject && Pc.hookingStep>0||hp.Hp==hp.MaxHp) //if Dead/docked/hooking step while not being hooked/full hp
             {
                 Canvas.SetActive(false);
-                Buttons[0].SetActive(false);
-                Buttons[1].SetActive(false);
+               // Buttons[0].SetActive(false);
+              //  Buttons[1].SetActive(false);
             } 
             else
             {
@@ -71,7 +71,7 @@ public class Hookable : MonoBehaviour
     }
     IEnumerator SpawnHookable()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         hookable = true;
         Buttons[0].SetActive(true);
     }

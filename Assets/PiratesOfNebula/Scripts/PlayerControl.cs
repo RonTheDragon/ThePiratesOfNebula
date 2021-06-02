@@ -226,15 +226,17 @@ public class PlayerControl : SpaceShips
                     {
                         if (pudge.Money > 10)
                         {
+                            currency.PopupMoney(TheHooked, pudge.Money / 2);
                             currency.Money += pudge.Money / 2;
-                            pudge.Money -= pudge.Money / 2;
-                            
+                            pudge.Money -= pudge.Money / 2;  
                         }
                         else if (pudge.Money > 0)
                         {
+                            currency.PopupMoney(TheHooked, pudge.Money);
                             currency.Money += pudge.Money;
                             pudge.Money = 0;
                         }
+                        
                     }
                 }
                 else { MilkingTime -= Time.deltaTime; }
