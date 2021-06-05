@@ -385,6 +385,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 490775508, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
+      propertyPath: Cannons.Array.data[0]
+      value: 
+      objectReference: {fileID: 8655404078043719575, guid: dac749fe92d9ad048b491b15149cae51,
+        type: 3}
+    - target: {fileID: 490775508, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
+      propertyPath: Cannons.Array.data[1]
+      value: 
+      objectReference: {fileID: 8655404078043719575, guid: dac749fe92d9ad048b491b15149cae51,
+        type: 3}
+    - target: {fileID: 490775508, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
+      propertyPath: Cannons.Array.data[2]
+      value: 
+      objectReference: {fileID: 8655404078043719575, guid: dac749fe92d9ad048b491b15149cae51,
+        type: 3}
+    - target: {fileID: 490775508, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
+      propertyPath: Cannons.Array.data[3]
+      value: 
+      objectReference: {fileID: 8655404078043719575, guid: dac749fe92d9ad048b491b15149cae51,
+        type: 3}
     - target: {fileID: 576979877689361034, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: m_LocalPosition.x

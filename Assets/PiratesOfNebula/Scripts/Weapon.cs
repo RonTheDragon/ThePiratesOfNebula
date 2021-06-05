@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public int Id;
     public GameObject GunPoint;
     public float Cooldown = 0.2f;
     public float HeatGain;

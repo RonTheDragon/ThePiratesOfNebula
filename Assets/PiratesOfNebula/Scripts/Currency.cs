@@ -33,6 +33,10 @@ public class Item
     {
         return Bought;
     }
+    public void AlreadyBought()
+    {
+        Bought = true;
+    }
 }
 
 public class Currency : MonoBehaviour

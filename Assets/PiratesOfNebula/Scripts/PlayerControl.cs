@@ -40,6 +40,10 @@ public class PlayerControl : SpaceShips
         ShootingSide = new bool[Cannons.Length];
         currency = transform.parent.GetComponent<Currency>();
         health = GetComponent<Health>();
+        for (int i = 0; i < Cannons.Length; i++)
+        {
+            ChangeWeapon(Cannons[i],i);
+        }
     }
 
     // Update is called once per frame

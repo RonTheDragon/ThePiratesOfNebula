@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c93ebc13391ec224580516231be970ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Id: 4
   GunPoint: {fileID: 8202119870584100516}
   Cooldown: 0.01
   HeatGain: 1

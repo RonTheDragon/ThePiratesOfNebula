@@ -24,7 +24,11 @@ public abstract class SpaceShips : MonoBehaviour
 
     public void ChangeWeapon(GameObject Weapon, int WhichCannon)
     {
-        Destroy(Cannons[WhichCannon]);
+        if (Cannons[WhichCannon] != null)
+        {
+            if (Cannons[WhichCannon].activeInHierarchy)
+                Destroy(Cannons[WhichCannon]);
+        }
         Cannons[WhichCannon] = Instantiate(Weapon);
         Cannons[WhichCannon].transform.position = CannonHolders[WhichCannon].transform.position;
         Cannons[WhichCannon].transform.rotation = CannonHolders[WhichCannon].transform.rotation;
