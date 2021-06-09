@@ -30,6 +30,8 @@ public class SpawnedMechanic : MonoBehaviour, IpooledObject
         {
             hookable.Money = hookable.StartMoney;
             hookable.hookable = false;
+            hookable.Buttons[0].SetActive(false);
+            hookable.Buttons[1].SetActive(false);
         }
         if (spaceshipsAI != null)
         {

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public int Id;
     public GameObject GunPoint;
     public float Cooldown = 0.2f;
     public float HeatGain;
     protected float cooldown;
-    public Cannon[] ExtraCannons;
+    public Weapon[] ExtraCannons;
     public GameObject WeaponIcon;
    
 
@@ -29,7 +30,7 @@ public abstract class Weapon : MonoBehaviour
         }
         if (ExtraCannons.Length > 0)
         {
-            foreach (Cannon c in ExtraCannons)
+            foreach (Weapon c in ExtraCannons)
             {
                 c.Shoot(Owner);
             }

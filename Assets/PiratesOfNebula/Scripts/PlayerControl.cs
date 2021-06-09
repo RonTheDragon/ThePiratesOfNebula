@@ -40,6 +40,10 @@ public class PlayerControl : SpaceShips
         ShootingSide = new bool[Cannons.Length];
         currency = transform.parent.GetComponent<Currency>();
         health = GetComponent<Health>();
+        for (int i = 0; i < Cannons.Length; i++)
+        {
+            ChangeWeapon(Cannons[i],i);
+        }
     }
 
     // Update is called once per frame
@@ -226,15 +230,17 @@ public class PlayerControl : SpaceShips
                     {
                         if (pudge.Money > 10)
                         {
+                            currency.PopupMoney(TheHooked, pudge.Money / 2);
                             currency.Money += pudge.Money / 2;
-                            pudge.Money -= pudge.Money / 2;
-                            
+                            pudge.Money -= pudge.Money / 2;  
                         }
                         else if (pudge.Money > 0)
                         {
+                            currency.PopupMoney(TheHooked, pudge.Money);
                             currency.Money += pudge.Money;
                             pudge.Money = 0;
                         }
+                        
                     }
                 }
                 else { MilkingTime -= Time.deltaTime; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandler , IEndDragHandler ,  IDragHandler
+public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandler , IEndDragHandler ,  IDragHandler, IDropHandler
 {
     RectTransform icon;
     CanvasGroup cg;
@@ -22,7 +22,7 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
     void Start()
     {
         startPosition = icon.anchoredPosition;
-        canvas = gameObject.transform.parent.parent.GetComponent<Canvas>();
+        canvas = transform.parent.parent.parent.GetComponent<Canvas>(); // oh great father
     }
 
     // Update is called once per frame
@@ -52,5 +52,27 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
     {
        // throw new System.NotImplementedException();
     }
-    
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        int a = 0;
+        int b = 0;
+        DragAndDrop d = eventData.pointerDrag.GetComponent<DragAndDrop>();
+        if (d&& d!=this)
+        {
+            ShipsManagement s = transform.parent.parent.parent.parent.GetComponent<ShipsManagement>();
+            for (int i = 0; i < s.Weapons.Count; i++)
+            {
+                if (s.Weapons[i] == TheWeapon) a = i;
+            }
+            for (int i = 0; i < s.Weapons.Count; i++)
+            {
+                if (s.Weapons[i] == d.TheWeapon) b = i;
+            }
+            GameObject g = s.Weapons[b];
+            s.Weapons[b] = s.Weapons[a];
+            s.Weapons[a] = g;
+            s.setWeaponSwitching();
+        }
+    }
 }
