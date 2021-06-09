@@ -18,7 +18,8 @@ public class Shoot : Damager , IpooledObject
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed * Time.deltaTime;
+        transform.position = gameObject.transform.position + gameObject.transform.forward * Speed * Time.deltaTime;
+        transform.position = new Vector3() { x = transform.position.x, y = 0, z = transform.position.z };
         if (damagecooldown > 0) { damagecooldown -= Time.deltaTime; }
     }
     private void OnCollisionEnter(Collision collision)

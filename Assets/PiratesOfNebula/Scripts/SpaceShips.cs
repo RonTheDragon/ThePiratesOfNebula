@@ -19,6 +19,7 @@ public abstract class SpaceShips : MonoBehaviour
 
     protected void Update()
     {
+        transform.position = new Vector3() { x = transform.position.x, y = 0, z = transform.position.z };
         HeatSystem();
     }
 
