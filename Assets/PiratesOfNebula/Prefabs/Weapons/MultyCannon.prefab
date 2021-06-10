@@ -287,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
@@ -297,27 +297,27 @@ PrefabInstance:
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.258819
+      value: 0.18301274
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.6830127
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.18301274
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: 0.6830127
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
@@ -327,12 +327,12 @@ PrefabInstance:
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -30
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
@@ -379,7 +379,7 @@ PrefabInstance:
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
@@ -389,27 +389,27 @@ PrefabInstance:
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2588191
+      value: 0.18301274
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.6830127
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.18301274
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659258
+      value: 0.6830127
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
@@ -424,7 +424,7 @@ PrefabInstance:
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 6201169017552576077, guid: 487098a50ce8b9d428623919b45a4883,
         type: 3}

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Hookable : MonoBehaviour
 {
-    public int StartMoney;
+    public int MinStartMoney;
+    public int MaxStartMoney;
     public int Money;
     public float HookableHealth;
     public float HookingRange;

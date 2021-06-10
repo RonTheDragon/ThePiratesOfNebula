@@ -28,7 +28,7 @@ public class SpawnedMechanic : MonoBehaviour, IpooledObject
         }
         if (hookable != null)
         {
-            hookable.Money = hookable.StartMoney;
+            hookable.Money = Random.Range(hookable.MinStartMoney, hookable.MaxStartMoney+1);
             hookable.hookable = false;
             hookable.Buttons[0].SetActive(false);
             hookable.Buttons[1].SetActive(false);

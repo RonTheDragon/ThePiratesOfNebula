@@ -69,8 +69,8 @@ public class PlayerControl : SpaceShips
         if (MoveAxl < 0) MoveAxl= 0; else if (MoveAxl > 1) MoveAxl = 1;
         float Speed;
         Speed = MovementSpeed * jsd  * (MoveAxl + 1);
-        gameObject.transform.position = gameObject.transform.position + gameObject.transform.up * Speed  * Time.deltaTime;
-        Vector3 Camdist = new Vector3(gameObject.transform.position.x+7, Cam.transform.position.y, gameObject.transform.position.z); //THIS IS THE CAM LOCATION!!!!!
+        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed  * Time.deltaTime;
+        Vector3 Camdist = new Vector3(gameObject.transform.position.x, Cam.transform.position.y, gameObject.transform.position.z-10); //THIS IS THE CAM LOCATION!!!!!
         float dist = Vector3.Distance(Camdist, Cam.transform.position);
         if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, Speed * 0.3f* dist * Time.deltaTime); }
         //Cam.transform.rotation = Quaternion.Euler(90,90,Spaceship.transform.rotation.eulerAngles.y-90);
@@ -107,13 +107,13 @@ public class PlayerControl : SpaceShips
         float RS = RotationSpeed * (ClosestRotation / 20);
         if (right)
         {
-            if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(RS, 0, 0); }
-            else if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(-RS, 0, 0); }
+            if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, RS, 0); }
+            else if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, -RS, 0); }
         }
         else
         {
-            if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(RS, 0, 0); }
-            else if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(-RS, 0, 0); }
+            if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, RS, 0); }
+            else if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, -RS, 0); }
         }
     }
     protected override void Combat()
@@ -228,11 +228,12 @@ public class PlayerControl : SpaceShips
                     MilkingTime = 1;
                     if (pudge != null)
                     {
+                        
                         if (pudge.Money > 10)
-                        {
-                            currency.PopupMoney(TheHooked, pudge.Money / 2);
-                            currency.Money += pudge.Money / 2;
-                            pudge.Money -= pudge.Money / 2;  
+                        {   int r = Random.Range(2, 5);
+                            currency.PopupMoney(TheHooked, pudge.Money / r);
+                            currency.Money += pudge.Money / r;
+                            pudge.Money -= pudge.Money / r;  
                         }
                         else if (pudge.Money > 0)
                         {
