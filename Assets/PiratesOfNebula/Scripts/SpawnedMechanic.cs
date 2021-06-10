@@ -9,6 +9,7 @@ public class SpawnedMechanic : MonoBehaviour, IpooledObject
     public Health health;
     public Hookable hookable;
     public SpaceshipsAI spaceshipsAI;
+    public Obstacle obstacle;
 
     public void OnObjectSpawn() //When Spawned
     {
@@ -37,6 +38,18 @@ public class SpawnedMechanic : MonoBehaviour, IpooledObject
         {
             spaceshipsAI.SwitchWeapons();
         }      
+        if (obstacle != null)
+        {
+            obstacle.Speed = Random.Range(0, obstacle.MovementSpeed);
+            obstacle.transform.rotation = Quaternion.Euler(new Vector3() { x = transform.rotation.x, z = transform.rotation.z, y = Random.Range(0, 360) });
+            obstacle.Rotation = new Vector3()
+            {
+                x = Random.Range(-obstacle.RotationSpeed, obstacle.RotationSpeed),
+                y = Random.Range(-obstacle.RotationSpeed, obstacle.RotationSpeed),
+                z = Random.Range(-obstacle.RotationSpeed, obstacle.RotationSpeed), };
+            float s = Random.Range(obstacle.MinScale, obstacle.MaxScale);
+            obstacle.transform.localScale = new Vector3() { x = s, y = s, z = s };
+        }
 
     }
     

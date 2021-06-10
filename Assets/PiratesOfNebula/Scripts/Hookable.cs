@@ -60,12 +60,26 @@ public class Hookable : MonoBehaviour
     }
     public void Hooked()
     {
+        ShipCollisionDamage SC1 = GetComponent<ShipCollisionDamage>();
+        ShipCollisionDamage SC2 = Pc.gameObject.GetComponent<ShipCollisionDamage>();
+        if (SC1 != null && SC2 != null)
+        {
+            SC1.DontDamageIt = Pc.gameObject;
+            SC2.DontDamageIt = gameObject;
+        }
         Pc.Hook(gameObject,HookingRange);
         Buttons[0].SetActive(false);
         Buttons[1].SetActive(true);
     }
     public void UnHooked()
     {
+        ShipCollisionDamage SC1 = GetComponent<ShipCollisionDamage>();
+        ShipCollisionDamage SC2 = Pc.gameObject.GetComponent<ShipCollisionDamage>();
+        if (SC1 != null && SC2 != null)
+        {
+            SC1.DontDamageIt = null;
+            SC2.DontDamageIt = null;
+        }
         Pc.hookingStep = 0;
         Buttons[1].SetActive(false);
         Buttons[0].SetActive(true);

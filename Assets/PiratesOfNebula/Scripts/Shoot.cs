@@ -9,10 +9,16 @@ public class Shoot : Damager , IpooledObject
     public bool DeclaredByShooter;
     public bool CantHitSelf;
     public GameObject ShootBy;
+    public string[] SpawnOnDeath;
+    ObjectPooler objectPooler;
     // Start is called before the Active
     public void OnObjectSpawn()
     {
         
+    }
+    void Start()
+    {
+        objectPooler = ObjectPooler.Instance;
     }
 
     // Update is called once per frame
@@ -26,7 +32,6 @@ public class Shoot : Damager , IpooledObject
     {
         if (damagecooldown <= 0)
         {
-            damagecooldown = DamageCooldown;
             string HitableTag=null;
             string HitableTag2=null;
             
@@ -63,7 +68,14 @@ public class Shoot : Damager , IpooledObject
                     if (hp != null)
                     {
                         hp.Damage(AttackDamage, Knockback, gameObject);
-                        if (DestroyOnImpact) gameObject.SetActive(false);
+                        if (DestroyOnImpact) {
+                            foreach (string s in SpawnOnDeath)
+                            {
+                                objectPooler.SpawnFromPool(s, transform.position, transform.rotation, transform.localScale);
+                            }
+                            gameObject.SetActive(false);
+                        }
+                        damagecooldown = DamageCooldown;
                     }
                 }
             }

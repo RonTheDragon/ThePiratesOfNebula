@@ -151,7 +151,7 @@ public class PlayerControl : SpaceShips
             if (TheHook.activeSelf == true)
             {
                 TheHook.transform.LookAt(transform.position);
-                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 10 * Time.deltaTime); //hook goes back to ship
+                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 20 * Time.deltaTime); //hook goes back to ship
                 float dist = Vector3.Distance(TheHook.transform.position, transform.position);
                 if (dist < 1)
                 {
@@ -212,8 +212,7 @@ public class PlayerControl : SpaceShips
                 {
                     pudge = TheHooked.GetComponent<Hookable>();
                 }
-                float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance 
-
+                float dist = Vector3.Distance(transform.position, TheHooked.transform.position); // Enemy Distance          
                 TheHook.transform.position = TheHooked.transform.position;
                 SwitchJoysickToUndock[0].SetActive(false);
                 SwitchJoysickToUndock[1].SetActive(true);

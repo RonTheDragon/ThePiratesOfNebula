@@ -10872,6 +10872,8 @@ MonoBehaviour:
   Hp: 100
   HpRegan: 3
   Healthbar: {fileID: 510565213}
+  SpawnOnDeath:
+  - ShipExplode
   TurnOffWhenDeath:
   - {fileID: 576979877874080809}
   - {fileID: 1779466242}
@@ -10931,7 +10933,8 @@ MonoBehaviour:
   Knockback: 20
   CantHitPlayer: 1
   CantHitEnemy: 0
-  DamageCooldown: 1
+  DamageCooldown: 0.5
+  DontDamageIt: {fileID: 0}
 --- !u!1 &576979878103621742
 GameObject:
   m_ObjectHideFlags: 0

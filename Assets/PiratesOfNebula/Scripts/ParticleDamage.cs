@@ -22,7 +22,6 @@ public class ParticleDamage : Damager
     {
         if (damagecooldown <= 0)
         {
-            damagecooldown = DamageCooldown;
             string HitableTag = null;
             string HitableTag2 = null;
 
@@ -58,7 +57,8 @@ public class ParticleDamage : Damager
                     Health hp = other.gameObject.GetComponent<Health>();
                     if (hp != null)
                     {
-                        hp.Damage(AttackDamage, Knockback, gameObject); 
+                        hp.Damage(AttackDamage, Knockback, gameObject);
+                        damagecooldown = DamageCooldown;
                     }
                 }
             }

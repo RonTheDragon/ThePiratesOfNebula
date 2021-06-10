@@ -188,6 +188,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 576979878139067030, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
 --- !u!1 &705507993
@@ -445,5 +450,17 @@ MonoBehaviour:
     pools:
     - tag: MoneyPopup
       prefab: {fileID: 1465630724571930558, guid: b56b774566cde8b4ca9469b32eb5c2e8,
+        type: 3}
+      size: 5
+    - tag: MeteorPop
+      prefab: {fileID: 246640568927293864, guid: 50af477bed63b174b9c6392458b7a5af,
+        type: 3}
+      size: 5
+    - tag: RocketPop
+      prefab: {fileID: 421771699550355653, guid: 2b69272c72771c440acccd9cbfa5fecc,
+        type: 3}
+      size: 10
+    - tag: ShipExplode
+      prefab: {fileID: 5856006638173100473, guid: 8508c00768547bf4385f27b8adf4e682,
         type: 3}
       size: 5

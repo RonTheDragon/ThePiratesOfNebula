@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShipCollisionDamage : Damager
 {
+    public GameObject DontDamageIt;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class ShipCollisionDamage : Damager
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (damagecooldown <= 0)
+        if (damagecooldown <= 0 && collision.gameObject != DontDamageIt)
         {
             damagecooldown = DamageCooldown;
             string HitableTag = null;
@@ -36,7 +37,7 @@ public class ShipCollisionDamage : Damager
             if (collision.gameObject.tag == HitableTag || collision.gameObject.tag == HitableTag2)
             {
                 //Debug.Log("Boom! You Shot: " + collision.gameObject.name);
-                
+               
                     Health hp = collision.gameObject.GetComponent<Health>();
                     if (hp != null)
                     {

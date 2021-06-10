@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -13,12 +14,15 @@ public class Health : MonoBehaviour
     GameObject Attacker;
     Vector3 V3Knockback;
     Vector3 no = new Vector3();
+    public string[] SpawnOnDeath;
     public GameObject[] TurnOffWhenDeath;
     SpaceshipsAI SAI;
+    ObjectPooler objectPooler;
     // Start is called before the first frame update
-    
+
     void Start()
     {
+        objectPooler = ObjectPooler.Instance;
         Spawn();
         SAI = gameObject.GetComponent<SpaceshipsAI>();
     }
@@ -78,9 +82,14 @@ public class Health : MonoBehaviour
 
     void Death()
     {
-        foreach(GameObject g in TurnOffWhenDeath)
+        foreach (string s in SpawnOnDeath)
+        {
+          objectPooler.SpawnFromPool(s, transform.position, transform.rotation,transform.localScale);
+        }
+        foreach (GameObject g in TurnOffWhenDeath)
         g.SetActive(false);
     }
-
     
+
+
 }

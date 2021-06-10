@@ -192,6 +192,8 @@ MonoBehaviour:
   Hp: 10
   HpRegan: 0
   Healthbar: {fileID: 112341609655229937}
+  SpawnOnDeath:
+  - ShipExplode
   TurnOffWhenDeath:
   - {fileID: 2552027404687969655}
   - {fileID: 3993143354713760685}
@@ -299,7 +301,8 @@ MonoBehaviour:
   Knockback: 20
   CantHitPlayer: 0
   CantHitEnemy: 0
-  DamageCooldown: 1
+  DamageCooldown: 0.5
+  DontDamageIt: {fileID: 0}
 --- !u!1 &2672745337683779356
 GameObject:
   m_ObjectHideFlags: 0
@@ -5134,6 +5137,7 @@ MonoBehaviour:
   health: {fileID: 2552027404687969650}
   hookable: {fileID: 2552027404687969653}
   spaceshipsAI: {fileID: 2552027404687969652}
+  obstacle: {fileID: 0}
 --- !u!1 &3993143353994055183
 GameObject:
   m_ObjectHideFlags: 0
@@ -10720,6 +10724,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: ffd7201a000e43548bae6abdfa88e722, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 74779679369fc3347b30910643e24cac,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: a40427b869b5c5b45967377f8bbe9a2d, type: 2}
     - target: {fileID: 919132149155446097, guid: 74779679369fc3347b30910643e24cac,
         type: 3}
       propertyPath: m_Name
