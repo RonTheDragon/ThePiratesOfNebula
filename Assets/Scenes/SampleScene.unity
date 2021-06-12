@@ -455,7 +455,7 @@ MonoBehaviour:
     - tag: MeteorPop
       prefab: {fileID: 246640568927293864, guid: 50af477bed63b174b9c6392458b7a5af,
         type: 3}
-      size: 5
+      size: 10
     - tag: RocketPop
       prefab: {fileID: 421771699550355653, guid: 2b69272c72771c440acccd9cbfa5fecc,
         type: 3}
