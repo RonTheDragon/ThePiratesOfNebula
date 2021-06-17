@@ -71,7 +71,7 @@ public class Currency : MonoBehaviour
         if (Money != money)
         {
             money = Money;
-            MoneyUI.text = $"Units: {Money}";
+            MoneyUI.text = string.Format("{0:#,#}$", money);
         }
     }
     public void PopupMoney(GameObject position, int amount)
