@@ -10691,6 +10691,7 @@ GameObject:
   - component: {fileID: 6938297865170612559}
   - component: {fileID: 105004397}
   - component: {fileID: 105004400}
+  - component: {fileID: 1253001848}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -10742,6 +10743,10 @@ MonoBehaviour:
   - {fileID: 8655404078043719575, guid: dac749fe92d9ad048b491b15149cae51, type: 3}
   - {fileID: 7988450233259561975, guid: d1c526d6440b1ae48938d66eb7e1c8b2, type: 3}
   - {fileID: 3901966106558339178, guid: 640abe43f0b6f404ea064f11e24dddd0, type: 3}
+  audioMixer: {fileID: 24100000, guid: dbdb059aeed6ca84783b46abdedaf8d0, type: 2}
+  audioMixerGroup:
+  - {fileID: -776266559148976338, guid: dbdb059aeed6ca84783b46abdedaf8d0, type: 2}
+  - {fileID: -3560474096035624316, guid: dbdb059aeed6ca84783b46abdedaf8d0, type: 2}
 --- !u!114 &105004397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10789,6 +10794,28 @@ MonoBehaviour:
   - Meteor
   MinDist: 15
   MaxDist: 30
+--- !u!114 &1253001848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576979877689361035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683e55355a7377d46982a4aec1a482a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - soundType: 1
+    activation: 0
+    Name: Music
+    Clip: {fileID: 8300000, guid: 89c6473cf189cde499d35d86b75fd476, type: 3}
+    Loop: 1
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0
+    source: {fileID: 0}
 --- !u!1 &576979877874080809
 GameObject:
   m_ObjectHideFlags: 0

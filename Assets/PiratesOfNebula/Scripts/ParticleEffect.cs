@@ -14,7 +14,7 @@ public class ParticleEffect : MonoBehaviour , IpooledObject
     {
       StartCoroutine(Disapear());
       if (particle!=null)particle.Emit(Amount);
-        
+      GetComponent<AudioManager>()?.PlaySound(Sound.Activation.ParticleSpawn);
     }
 
     // Start is called before the first frame update

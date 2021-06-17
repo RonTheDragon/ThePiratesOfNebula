@@ -19,6 +19,9 @@ public abstract class Weapon : MonoBehaviour
         {
             cooldown = Cooldown;
             Shooting(Owner);
+            GetComponent<AudioManager>()?.PlaySound(Sound.Activation.Shoot);
+            
+
             if (HeatGain > 0)
             {
                 SpaceShips ship = Owner.GetComponent<SpaceShips>();

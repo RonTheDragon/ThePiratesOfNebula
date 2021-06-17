@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class ShipsManagement : MonoBehaviour
 {
@@ -10,9 +11,21 @@ public class ShipsManagement : MonoBehaviour
     public GameObject WeaponsList;
     public List<GameObject> Weapons;
     public List<GameObject> AllWeaponsInGameList;
+    public AudioMixer audioMixer;
+    public static AudioMixerGroup[] audiomixergroup;
+    public AudioMixerGroup[] audioMixerGroup;
 
     private void Awake()
     {
+        audiomixergroup = audioMixerGroup;
+
+        audioMixer.SetFloat("Sound", PlayerPrefs.GetFloat("Sound"));
+        audioMixer.SetFloat("Music", PlayerPrefs.GetFloat("Music"));
+        QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
+        Resolution R = Screen.resolutions[PlayerPrefs.GetInt("Res")];
+        Screen.SetResolution(R.width, R.height, Screen.fullScreen);
+
+
         if (PlayerPrefs.GetInt("NewGame")==0)
         {
             PlayerData d = SaveSystem.Load(PlayerPrefs.GetInt("slot"));
@@ -37,6 +50,7 @@ public class ShipsManagement : MonoBehaviour
                 p.Cannons[i] = AllWeaponsInGameList[d.ItemSlots[i]];
             }
         }
+        
     }
 
     void Start()
