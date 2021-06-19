@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3552690560302165773}
   - component: {fileID: 3313874063793948029}
+  - component: {fileID: -5349080878318000369}
   m_Layer: 0
   m_Name: RocketLauncher
   m_TagString: Untagged
@@ -263,3 +264,26 @@ MonoBehaviour:
   ExtraCannons: []
   WeaponIcon: {fileID: 1115151677349379848}
   PrefabShot: Rocket
+--- !u!114 &-5349080878318000369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7988450233259561975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683e55355a7377d46982a4aec1a482a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: pew
+    soundType: 0
+    activation: 1
+    Clip: {fileID: 8300000, guid: 6dba699a9cb02cb41a7234915be47416, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    Volume: 1
+    Pitch: 0.6
+    RandomizedPitch: 0.2
+    source: {fileID: 0}
