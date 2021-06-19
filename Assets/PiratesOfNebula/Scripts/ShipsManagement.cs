@@ -100,25 +100,16 @@ public class ShipsManagement : MonoBehaviour
         {
             Destroy(g.gameObject);
         }
-        int x = -350;
-        int y = 150;
-        int count = 0;
+        
         foreach (GameObject w in Weapons)
         {
             Weapon c = w.GetComponent<Weapon>();
             if (c != null)
             {
                 GameObject i = Instantiate(c.WeaponIcon);
-                // i.transform.parent = Menus[1].transform;
                 i.transform.SetParent(WeaponsList.transform,false);
-                RectTransform r = i.GetComponent<RectTransform>();
-                DragAndDrop d = i.GetComponent<DragAndDrop>();
-                
-                d.TheWeapon = w;
-                r.anchoredPosition = new Vector3(x, y);
-                count++;
-                if (count >= 5) { x = -450; y -= 70; count = 0; }
-                x += 100;
+                DragAndDrop d = i.GetComponent<DragAndDrop>(); 
+                d.TheWeapon = w;             
             }
         }
     }

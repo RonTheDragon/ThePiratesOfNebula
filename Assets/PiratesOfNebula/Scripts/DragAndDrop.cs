@@ -5,14 +5,15 @@ using UnityEngine.EventSystems;
 
 public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandler , IEndDragHandler ,  IDragHandler, IDropHandler
 {
+    ShipsManagement Sm;
     RectTransform icon;
     CanvasGroup cg;
-    Vector3 startPosition;
     Canvas canvas;
     public GameObject TheWeapon;
 
     private void Awake()
     {
+        
         icon = GetComponent<RectTransform>();
         cg = GetComponent<CanvasGroup>();
       //  icon.localScale = new Vector3() { x = canvas.scaleFactor, y = canvas.scaleFactor, z = canvas.scaleFactor };
@@ -20,8 +21,7 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
 
     // Start is called before the first frame update
     void Start()
-    {
-        startPosition = icon.anchoredPosition;
+    {Sm = transform.root.GetComponent<ShipsManagement>();
         canvas = transform.parent.parent.parent.GetComponent<Canvas>(); // oh great father
     }
 
@@ -43,7 +43,7 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        icon.anchoredPosition = startPosition;
+        Sm.setWeaponSwitching();
         cg.blocksRaycasts = true;
         cg.alpha = 1f;
     }
@@ -60,19 +60,18 @@ public class DragAndDrop : MonoBehaviour , IPointerDownHandler , IBeginDragHandl
         DragAndDrop d = eventData.pointerDrag.GetComponent<DragAndDrop>();
         if (d&& d!=this)
         {
-            ShipsManagement s = transform.parent.parent.parent.parent.GetComponent<ShipsManagement>();
-            for (int i = 0; i < s.Weapons.Count; i++)
+            for (int i = 0; i < Sm.Weapons.Count; i++)
             {
-                if (s.Weapons[i] == TheWeapon) a = i;
+                if (Sm.Weapons[i] == TheWeapon) a = i;
             }
-            for (int i = 0; i < s.Weapons.Count; i++)
+            for (int i = 0; i < Sm.Weapons.Count; i++)
             {
-                if (s.Weapons[i] == d.TheWeapon) b = i;
+                if (Sm.Weapons[i] == d.TheWeapon) b = i;
             }
-            GameObject g = s.Weapons[b];
-            s.Weapons[b] = s.Weapons[a];
-            s.Weapons[a] = g;
-            s.setWeaponSwitching();
+            GameObject g = Sm.Weapons[b];
+            Sm.Weapons[b] = Sm.Weapons[a];
+            Sm.Weapons[a] = g;
         }
+        Sm.setWeaponSwitching();
     }
 }

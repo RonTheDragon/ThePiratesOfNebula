@@ -85,9 +85,7 @@ public class Currency : MonoBehaviour
         {
             Destroy(g.gameObject);
         }
-        int x = -250;
-        int y = 150;
-        int count = 0;
+        
         //yes
         foreach (Item i in Items)
         {
@@ -99,10 +97,8 @@ public class Currency : MonoBehaviour
                 t.text = $"{i.Name} {i.Cost}";
                 Button b = g.GetComponent<Button>();
                 b.onClick.AddListener(i.Buy);
-                g.GetComponent<RectTransform>().anchoredPosition = new Vector3(x, y);
-                count++;
-                if (count >= 5) { x = -450; y -= 70; count = 0; }
-                y -= 100;
+                Image Im = g.transform.GetChild(1).GetComponent<Image>();
+                Im.sprite = i.Weapon.GetComponent<Weapon>().WeaponIcon.GetComponent<Image>().sprite;
             }
         }
 
