@@ -14,7 +14,7 @@ public class ParticleEffect : MonoBehaviour , IpooledObject
     {
       StartCoroutine(Disapear());
       if (particle!=null)particle.Emit(Amount);
-      GetComponent<AudioManager>()?.PlaySound(Sound.Activation.ParticleSpawn);
+      StartCoroutine(PlayTheSound());
     }
 
     // Start is called before the first frame update
@@ -40,5 +40,10 @@ public class ParticleEffect : MonoBehaviour , IpooledObject
     {
         yield return new WaitForSeconds(Livetime);
         gameObject.SetActive(false);
+    }
+    IEnumerator PlayTheSound()
+    {
+        yield return new WaitForSeconds(0.01f);
+        GetComponent<AudioManager>()?.PlaySound(Sound.Activation.ParticleSpawn);
     }
 }

@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2850550084005813101}
   - component: {fileID: 4269341976177963293}
+  - component: {fileID: 5101724083304672570}
   m_Layer: 0
   m_Name: MultyCannon
   m_TagString: Untagged
@@ -267,6 +268,49 @@ MonoBehaviour:
   - {fileID: 9065846499205445346}
   WeaponIcon: {fileID: 835474813803870963}
   PrefabShot: Test
+--- !u!114 &5101724083304672570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655404078043719575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683e55355a7377d46982a4aec1a482a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: pew
+    soundType: 0
+    activation: 1
+    Clip: {fileID: 8300000, guid: 6dba699a9cb02cb41a7234915be47416, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    Volume: 0.5
+    Pitch: 2
+    RandomizedPitch: 0.2
+    source: {fileID: 0}
+  - Name: pew
+    soundType: 0
+    activation: 1
+    Clip: {fileID: 8300000, guid: 6dba699a9cb02cb41a7234915be47416, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    Volume: 0.5
+    Pitch: 2
+    RandomizedPitch: 0.2
+    source: {fileID: 0}
+  - Name: pew
+    soundType: 0
+    activation: 1
+    Clip: {fileID: 8300000, guid: 6dba699a9cb02cb41a7234915be47416, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    Volume: 0.5
+    Pitch: 2
+    RandomizedPitch: 0.2
+    source: {fileID: 0}
 --- !u!1001 &3994181446101811935
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5301,6 +5301,7 @@ MonoBehaviour:
     Name: Menu Music
     Clip: {fileID: 8300000, guid: 7952b8ca281cb5843b73c27c74ebfcf9, type: 3}
     Loop: 1
+    HearEveryWhere: 1
     Volume: 1
     Pitch: 1
     RandomizedPitch: 0

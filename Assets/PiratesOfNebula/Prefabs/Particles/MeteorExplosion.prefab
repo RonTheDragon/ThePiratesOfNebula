@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 687892566528799725}
   - component: {fileID: 5039618641569228242}
   - component: {fileID: 7437535591307071261}
+  - component: {fileID: 7140718324574989182}
   m_Layer: 0
   m_Name: MeteorExplosion
   m_TagString: Untagged
@@ -4826,6 +4827,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   v2: {x: 0, y: 0}
-  Livetime: 10
+  Livetime: 5
   particle: {fileID: 687892566528799725}
-  Amount: 10
+  Amount: 5
+--- !u!114 &7140718324574989182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246640568927293864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683e55355a7377d46982a4aec1a482a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: ShipExplode
+    soundType: 0
+    activation: 2
+    Clip: {fileID: 8300000, guid: 7ac201aaf4bf66142a535df29077d1f8, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0.2
+    source: {fileID: 0}

@@ -7,17 +7,18 @@ using System;
 [Serializable]
 public class Sound
 {
+    public string Name;
     public enum SoundType { Normal, Music };
     public enum Activation {Custom,Shoot,ParticleSpawn,PlayInstantly};
     public SoundType soundType;
     public Activation activation;
-    public string Name;
     public AudioClip Clip;
     public bool Loop;
-    [Range(0f,1f)]
-    public float Volume;
+    public bool HearEveryWhere;
+    [Range(0f, 1f)]
+    public float Volume = 1f;
     [Range(.1f, 3f)]
-    public float Pitch = 1;
+    public float Pitch = 1f;
     [Range(0f,2f)]
     public float RandomizedPitch;
 
@@ -50,6 +51,13 @@ public class AudioManager : MonoBehaviour
             s.source.clip = s.Clip;
             s.source.volume = s.Volume;
             s.source.loop = s.Loop;
+            if (!s.HearEveryWhere)
+            {
+                s.source.spatialBlend = 1;
+                s.source.rolloffMode = AudioRolloffMode.Linear;
+                s.source.minDistance = 20;
+                s.source.maxDistance = 30;
+            }
             if (s.soundType == Sound.SoundType.Normal)
             {
                 s.source.outputAudioMixerGroup = AudioMixers[0];

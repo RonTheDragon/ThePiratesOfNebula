@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6603240147044219900}
   - component: {fileID: 1718364311582420419}
   - component: {fileID: 3828031638345959180}
+  - component: {fileID: -6634465434705638329}
   m_Layer: 0
   m_Name: ShipExplode
   m_TagString: Untagged
@@ -4829,3 +4830,26 @@ MonoBehaviour:
   Livetime: 5
   particle: {fileID: 6603240147044219900}
   Amount: 30
+--- !u!114 &-6634465434705638329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5856006638173100473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683e55355a7377d46982a4aec1a482a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: ShipExplode
+    soundType: 0
+    activation: 2
+    Clip: {fileID: 8300000, guid: 7ac201aaf4bf66142a535df29077d1f8, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0.2
+    source: {fileID: 0}

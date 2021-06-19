@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6516934012448281823}
   - component: {fileID: 687999875799302688}
   - component: {fileID: 4350984424444771186}
+  - component: {fileID: 5899451050343073998}
   m_Layer: 5
   m_Name: MoneyPopup
   m_TagString: Untagged
@@ -114,6 +115,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   v2: {x: 0, y: 2}
   Livetime: 1
+  particle: {fileID: 0}
+  Amount: 0
+--- !u!114 &5899451050343073998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465630724571930558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683e55355a7377d46982a4aec1a482a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: Particle
+    soundType: 0
+    activation: 2
+    Clip: {fileID: 8300000, guid: 074a574016148eb41999527759b482fe, type: 3}
+    Loop: 0
+    HearEveryWhere: 1
+    Volume: 1
+    Pitch: 1
+    RandomizedPitch: 0.2
+    source: {fileID: 0}
 --- !u!1 &3912683496151862290
 GameObject:
   m_ObjectHideFlags: 0
