@@ -43,7 +43,7 @@ public class ItemSlot : MonoBehaviour , IDropHandler
             i.transform.SetParent(transform.parent,false);
             RectTransform r = i.GetComponent<RectTransform>();
             RectTransform rr = gameObject.GetComponent<RectTransform>();
-            r.anchoredPosition = rr.anchoredPosition;
+            //r.anchoredPosition = rr.anchoredPosition;
             Icon = i;
             CanvasGroup cg = i.GetComponent<CanvasGroup>();
             cg.blocksRaycasts = false;
