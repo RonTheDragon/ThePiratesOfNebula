@@ -41,6 +41,12 @@ public class OpenMenu : MonoBehaviour
 
     Resolution[] resolutions;
 
+    public GameObject Ship;
+    public GameObject Map;
+    public GameObject OpenCanvas;
+    public GameObject MainUI;
+    public GameObject ShipControls;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -49,8 +55,12 @@ public class OpenMenu : MonoBehaviour
 
     void Start()
     {
-        
-        
+        Ship.SetActive(false);
+        Map.SetActive(false);
+        OpenCanvas.SetActive(true);
+        MainUI.SetActive(false);
+        ShipControls.SetActive(false);
+
         resolutions = Screen.resolutions;
         Dropdowns[1].ClearOptions();
         List<string> options = new List<string>();
@@ -155,7 +165,22 @@ public class OpenMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadScene("SampleScene");
+        Ship.SetActive(true);
+        Map.SetActive(true);
+        OpenCanvas.SetActive(false);
+        MainUI.SetActive(true);
+        ShipControls.SetActive(true);
+    }
+
+    public void PauseTime()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void PlayTime()
+    {
+        Time.timeScale = 1f;
     }
 
     public void SetVolume(float volume)
