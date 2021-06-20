@@ -15,6 +15,8 @@ public class ShipsManagement : MonoBehaviour
     public static AudioMixerGroup[] audiomixergroup;
     public AudioMixerGroup[] audioMixerGroup;
 
+    public GameObject OpenCanvs;
+
     private void Awake()
     {
         audiomixergroup = audioMixerGroup;
@@ -83,7 +85,7 @@ public class ShipsManagement : MonoBehaviour
     public void SaveAndExit()
     {
         SaveSystem.Save(gameObject, PlayerPrefs.GetInt("slot"));
-        SceneManager.LoadScene("OpenScreen");
+        OpenCanvs.GetComponent<OpenMenu>().OpenMenuStart();
     }
 
     void ChangeMenu(int Menu)

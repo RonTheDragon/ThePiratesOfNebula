@@ -110,6 +110,22 @@ public class OpenMenu : MonoBehaviour
     {
     }
 
+    public void OpenMenuStart()
+    {
+        Ship.SetActive(false);
+        Map.SetActive(false);
+        OpenCanvas.SetActive(true);
+        MainUI.SetActive(false);
+        ShipControls.SetActive(false);
+        ButtonsPanel.SetActive(true);
+        NewGameMenu.SetActive(false);
+        SettingsMenu.SetActive(false);
+        SpecSelector.SetActive(true);
+        AvatarSelector.SetActive(false);
+        SaveSlots.SetActive(false);
+        LoadSlots.SetActive(false);
+    }
+
     public void OpenNewGame()
     {
         ButtonsPanel.SetActive(false);

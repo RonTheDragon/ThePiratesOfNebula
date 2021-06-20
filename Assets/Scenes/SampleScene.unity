@@ -633,6 +633,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300002, guid: 88dca061d041a2a4596563e6a38f66c8,
         type: 3}
+    - target: {fileID: 6938297865170612559, guid: f232ca76f4d82b142ae7116b6e0c27db,
+        type: 3}
+      propertyPath: OpenCanvs
+      value: 
+      objectReference: {fileID: 963246509}
     - target: {fileID: 8957697161064145609, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: m_AnchoredPosition.y
