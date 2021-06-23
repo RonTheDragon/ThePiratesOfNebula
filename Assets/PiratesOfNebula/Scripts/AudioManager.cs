@@ -42,8 +42,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AudioMixers = ShipsManagement.audiomixergroup;
-        if (AudioMixers == null) AudioMixers = OpenMenu.audiomixergroup;
+        AudioMixers = Settings.audiomixergroup;
 
         foreach (Sound s in Sounds)
         {
