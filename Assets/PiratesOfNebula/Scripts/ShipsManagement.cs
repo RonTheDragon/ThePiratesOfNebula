@@ -12,7 +12,6 @@ public class ShipsManagement : MonoBehaviour
     public List<GameObject> Weapons;
     public List<GameObject> AllWeaponsInGameList;
 
-    public GameObject OpenCanvs;
 
     private void Awake()
     {
@@ -20,22 +19,32 @@ public class ShipsManagement : MonoBehaviour
         {
             PlayerData d = SaveSystem.Load(PlayerPrefs.GetInt("slot"));
             Currency c = GetComponent<Currency>();
-            c.Money = d.Money;
-            for (int i = 0; i < c.Items.Count; i++)
+            c.Money = d.Money; //set Money
+            for (int i = 0; i < c.Items.Count; i++) //Set Shop
             {
                 if (d.Shop[i])
                 {
                     c.Items[i].AlreadyBought();
-                }
+                } 
             }
+            for (int i = 0; i < c.Upgrades.Count; i++) //Set Shop
+            {
+                int count = 0;
+                while(c.Upgrades[i].Level<d.Upgrades[i])
+                {
+                    c.Upgrades[i].Upgraded();
+                    count++;
+                    if (count > 100) break;
+                }
+            } c.UpgradeShop();
             Weapons = new List<GameObject>();
-            for (int i = 0; i < d.Inventory.Length; i++)
+            for (int i = 0; i < d.Inventory.Length; i++) //Set Inventory
             {
                 Weapons.Add(AllWeaponsInGameList[d.Inventory[i]]);
             }
             PlayerControl p = Spaceship.GetComponent<PlayerControl>();
             p.Cannons = new GameObject[d.ItemSlots.Length];
-            for (int i = 0; i < d.ItemSlots.Length; i++)
+            for (int i = 0; i < d.ItemSlots.Length; i++) //Set Weapon Slots
             {
                 p.Cannons[i] = AllWeaponsInGameList[d.ItemSlots[i]];
             }
@@ -86,18 +95,17 @@ public class ShipsManagement : MonoBehaviour
     }
     public void setWeaponSwitching()
     {
-        foreach(Transform g in WeaponsList.transform)
+        foreach (Transform g in WeaponsList.transform)
         {
             Destroy(g.gameObject);
         }
-        
+
         foreach (GameObject w in Weapons)
         {
             Weapon c = w.GetComponent<Weapon>();
             if (c != null)
             {
-                GameObject i = Instantiate(c.WeaponIcon);
-                i.transform.SetParent(WeaponsList.transform,false);
+                GameObject i = Instantiate(c.WeaponIcon,WeaponsList.transform, false);
                 DragAndDrop d = i.GetComponent<DragAndDrop>(); 
                 d.TheWeapon = w;             
             }

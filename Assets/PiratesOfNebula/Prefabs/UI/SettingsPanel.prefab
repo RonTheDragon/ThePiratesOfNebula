@@ -56,7 +56,7 @@ MonoBehaviour:
   audioMixerGroup:
   - {fileID: -776266559148976338, guid: dbdb059aeed6ca84783b46abdedaf8d0, type: 2}
   - {fileID: -3560474096035624316, guid: dbdb059aeed6ca84783b46abdedaf8d0, type: 2}
-  DefaultVolume: 0
+  DefaultVolume: 1
   Sliders:
   - {fileID: 5141510757105707892}
   - {fileID: 4560512514716960304}
@@ -252,12 +252,12 @@ PrefabInstance:
     - target: {fileID: 3158512731479483692, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
         type: 3}
       propertyPath: m_MinValue
-      value: -80
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 3158512731479483692, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
         type: 3}
       propertyPath: m_MaxValue
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3158512731479483692, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
         type: 3}
@@ -454,6 +454,11 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0.88235295
       objectReference: {fileID: 0}
+    - target: {fileID: 3663359165509500240, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3695020789250375856, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
         type: 3}
       propertyPath: m_Name
@@ -497,12 +502,12 @@ PrefabInstance:
     - target: {fileID: 6036278887341426792, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
         type: 3}
       propertyPath: m_MinValue
-      value: -80
+      value: 0.0001
       objectReference: {fileID: 0}
     - target: {fileID: 6036278887341426792, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
         type: 3}
       propertyPath: m_MaxValue
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6036278887341426792, guid: 93bf8d545a8d76d499b3d067f8bebc7e,
         type: 3}

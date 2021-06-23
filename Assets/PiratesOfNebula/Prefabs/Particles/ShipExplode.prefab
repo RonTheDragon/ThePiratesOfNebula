@@ -4846,10 +4846,10 @@ MonoBehaviour:
   - Name: ShipExplode
     soundType: 0
     activation: 2
-    Clip: {fileID: 8300000, guid: 7ac201aaf4bf66142a535df29077d1f8, type: 3}
+    Clip: {fileID: 8300000, guid: 8a7de0f697e4a094cb4974520858844a, type: 3}
     Loop: 0
     HearEveryWhere: 0
-    Volume: 1
+    Volume: 0.1
     Pitch: 1
     RandomizedPitch: 0.2
     source: {fileID: 0}

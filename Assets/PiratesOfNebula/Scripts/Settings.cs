@@ -11,7 +11,7 @@ public class Settings : MonoBehaviour
     public static AudioMixerGroup[] audiomixergroup;
     public AudioMixerGroup[] audioMixerGroup;
 
-    [Range(-80f, 0f)]
+    [Range(0.0001f, 1f)]
     public float DefaultVolume;
 
     float sound;
@@ -48,9 +48,10 @@ public class Settings : MonoBehaviour
         }
         Dropdowns[1].AddOptions(options);
         Dropdowns[1].RefreshShownValue();
-        ResetSettings();
-        audioMixer.SetFloat("Sound", PlayerPrefs.GetFloat("Sound"));
-        audioMixer.SetFloat("Music", PlayerPrefs.GetFloat("Music"));
+        //ResetSettings();
+        audioMixer.SetFloat("Sound", Mathf.Log10(PlayerPrefs.GetFloat("Sound"))*20);
+        audioMixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")) * 20);
+       // Debug.Log($"{PlayerPrefs.GetFloat("Sound")}{PlayerPrefs.GetFloat("Music")}");
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
         Resolution R = resolutions[PlayerPrefs.GetInt("Res")];
         Screen.SetResolution(R.width, R.height, Screen.fullScreen);
@@ -83,11 +84,12 @@ public class Settings : MonoBehaviour
     }
     public void SaveSettings()
     {
-        audioMixer.SetFloat("Sound", sound);
+        audioMixer.SetFloat("Sound", Mathf.Log10(sound) * 20);
         PlayerPrefs.SetFloat("Sound", sound);
 
-        audioMixer.SetFloat("Music", Music);
+        audioMixer.SetFloat("Music", Mathf.Log10(Music) * 20);
         PlayerPrefs.SetFloat("Music", Music);
+       // Debug.Log($"{PlayerPrefs.GetFloat("Sound")}{PlayerPrefs.GetFloat("Music")}");
 
         QualitySettings.SetQualityLevel(Quality);
         PlayerPrefs.SetInt("Quality", Quality);
@@ -120,8 +122,8 @@ public class Settings : MonoBehaviour
     }
     public void ResetSettings()
     {
-        audioMixer.SetFloat("Sound", DefaultVolume);
-        audioMixer.SetFloat("Music", DefaultVolume);
+        audioMixer.SetFloat("Sound", Mathf.Log10(DefaultVolume) * 20);
+        audioMixer.SetFloat("Music", Mathf.Log10(DefaultVolume) * 20);
         QualitySettings.SetQualityLevel(6);
         Resolution R = resolutions[CurrentRes];
         Screen.SetResolution(R.width, R.height, Screen.fullScreen);

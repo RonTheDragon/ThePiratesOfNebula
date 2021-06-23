@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3901966106558339159}
   - component: {fileID: 3901966106558339176}
   - component: {fileID: 4667440630020026558}
+  - component: {fileID: -6966044736486031232}
   m_Layer: 0
   m_Name: Lazer_gun
   m_TagString: Untagged
@@ -105,6 +106,29 @@ MonoBehaviour:
   ExtraCannons: []
   WeaponIcon: {fileID: 6070576128485442663}
   ParticleAmount: 1
+--- !u!114 &-6966044736486031232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3901966106558339178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683e55355a7377d46982a4aec1a482a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sounds:
+  - Name: Lazer
+    soundType: 0
+    activation: 1
+    Clip: {fileID: 8300000, guid: ac6319476dd549f43b3174493594e84b, type: 3}
+    Loop: 0
+    HearEveryWhere: 0
+    Volume: 0.5
+    Pitch: 3
+    RandomizedPitch: 1
+    source: {fileID: 0}
 --- !u!1 &3901966106682092492
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5976787180673482509}
   - component: {fileID: 6216139244848240778}
   - component: {fileID: 4009547672075487603}
-  - component: {fileID: -4809208427135475259}
   m_Layer: 5
   m_Name: "B\u05D5utton"
   m_TagString: Untagged
@@ -162,20 +161,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 12
---- !u!114 &-4809208427135475259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 423453612334238422}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AspectMode: 3
-  m_AspectRatio: 0.1
 --- !u!1 &3750504988361337999
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,8 @@ public class PlayerControl : SpaceShips
     float MoveAxl;
     public float RotationSpeed;
     public GameObject[] SwitchJoysickToUndock;
+    public float CameraDistFromShip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,7 +72,7 @@ public class PlayerControl : SpaceShips
         float Speed;
         Speed = MovementSpeed * jsd  * (MoveAxl + 1);
         gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed  * Time.deltaTime;
-        Vector3 Camdist = new Vector3(gameObject.transform.position.x, Cam.transform.position.y, gameObject.transform.position.z-10); //THIS IS THE CAM LOCATION!!!!!
+        Vector3 Camdist = new Vector3(gameObject.transform.position.x, Cam.transform.position.y, gameObject.transform.position.z- CameraDistFromShip); //THIS IS THE CAM LOCATION!!!!!
         float dist = Vector3.Distance(Camdist, Cam.transform.position);
         if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, Speed * 0.3f* dist * Time.deltaTime); }
         //Cam.transform.rotation = Quaternion.Euler(90,90,Spaceship.transform.rotation.eulerAngles.y-90);
@@ -151,6 +153,8 @@ public class PlayerControl : SpaceShips
             if (TheHook.activeSelf == true)
             {
                 TheHook.transform.LookAt(transform.position);
+                TheHook.transform.rotation = Quaternion.Euler(new Vector3(){ x=TheHook.transform.rotation.x,y=TheHook.transform.rotation.y+180,z=TheHook.transform.rotation.z});
+                
                 TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 20 * Time.deltaTime); //hook goes back to ship
                 float dist = Vector3.Distance(TheHook.transform.position, transform.position);
                 if (dist < 1)
@@ -166,7 +170,6 @@ public class PlayerControl : SpaceShips
             {
 
                 float dist = Vector3.Distance(TheHook.transform.position, TheHooked.transform.position); // Hook Distance 
-
                 TheHook.transform.LookAt(TheHooked.transform.position);
                 TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, TheHooked.transform.position, 10 * Time.deltaTime);
                 if (dist < 1)
@@ -196,7 +199,7 @@ public class PlayerControl : SpaceShips
                 {
                     float pullingSpeed = 5;
                     if (dist > pullingSpeed) { pullingSpeed = dist; }
-                    TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, pullingSpeed * 1.5f * Time.deltaTime);
+                    TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, pullingSpeed * 2.5f * Time.deltaTime);
                 }
                 else
                 {
@@ -222,7 +225,7 @@ public class PlayerControl : SpaceShips
                 {
                     TheHooked.transform.position = Vector3.MoveTowards(TheHooked.transform.position, gameObject.transform.position, dist * -0.1f * Time.deltaTime);
                 }
-                if (MilkingTime <= 0)
+                if (MilkingTime <= 0 && dist<5)
                 {
                     MilkingTime = 1;
                     if (pudge != null)
@@ -245,7 +248,7 @@ public class PlayerControl : SpaceShips
                 }
                 else { MilkingTime -= Time.deltaTime; }
 
-                if (dist > 30) { StopHooking(); }
+                if (dist > 20) { StopHooking(); }
             }
 
         }
@@ -297,6 +300,7 @@ public class PlayerControl : SpaceShips
     }
     void StopHooking()
     {
+        TheHook.GetComponent<Hookable>()?.UnHooked();
         hookingStep = 0; TheHooked = null; TheHookedRange = 0;  
     }
     

@@ -287,27 +287,7 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 6dba699a9cb02cb41a7234915be47416, type: 3}
     Loop: 0
     HearEveryWhere: 0
-    Volume: 0.5
-    Pitch: 2
-    RandomizedPitch: 0.2
-    source: {fileID: 0}
-  - Name: pew
-    soundType: 0
-    activation: 1
-    Clip: {fileID: 8300000, guid: 6dba699a9cb02cb41a7234915be47416, type: 3}
-    Loop: 0
-    HearEveryWhere: 0
-    Volume: 0.5
-    Pitch: 2
-    RandomizedPitch: 0.2
-    source: {fileID: 0}
-  - Name: pew
-    soundType: 0
-    activation: 1
-    Clip: {fileID: 8300000, guid: 6dba699a9cb02cb41a7234915be47416, type: 3}
-    Loop: 0
-    HearEveryWhere: 0
-    Volume: 0.5
+    Volume: 0.1
     Pitch: 2
     RandomizedPitch: 0.2
     source: {fileID: 0}

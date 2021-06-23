@@ -7,8 +7,10 @@ public class PlayerData
 {
     public int Money;
     public bool[] Shop;
+    public int[] Upgrades;
     public int[] Inventory;
     public int[] ItemSlots;
+    
     public PlayerData(GameObject Player)
     {
         Currency c = Player.GetComponent<Currency>(); // Set Money and Shop
@@ -17,6 +19,11 @@ public class PlayerData
         for (int i = 0; i < c.Items.Count; i++)
         {
             Shop[i] = c.Items[i].checkifOwned();
+        }
+        Upgrades = new int[c.Upgrades.Count];
+        for (int i = 0; i < c.Upgrades.Count; i++)
+        {
+            Upgrades[i] = c.Upgrades[i].Level;
         }
 
         ShipsManagement s = Player.GetComponent<ShipsManagement>(); //Organize Inventory

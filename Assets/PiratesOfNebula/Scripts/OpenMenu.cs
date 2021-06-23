@@ -34,10 +34,6 @@ public class OpenMenu : MonoBehaviour
 
     void Start()
     {
-
-        
-
-
         ButtonsPanel.SetActive(true);
         NewGameMenu.SetActive(false);
         SettingsMenu.SetActive(false);
@@ -120,7 +116,11 @@ public class OpenMenu : MonoBehaviour
 
     public void QuitGame()
     {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
         Application.Quit();
+#endif
     }
 
     public void OpenAvatarSelector()
