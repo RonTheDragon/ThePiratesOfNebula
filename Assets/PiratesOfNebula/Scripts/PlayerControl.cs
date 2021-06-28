@@ -185,7 +185,7 @@ public class PlayerControl : SpaceShips
                 TheHook.transform.LookAt(transform.position);
                 TheHook.transform.rotation = Quaternion.Euler(new Vector3(){ x=TheHook.transform.rotation.x,y=TheHook.transform.rotation.y+180,z=TheHook.transform.rotation.z});
                 
-                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 20 * Time.deltaTime); //hook goes back to ship
+                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 30 * Time.deltaTime); //hook goes back to ship
                 float dist = Vector3.Distance(TheHook.transform.position, transform.position);
                 if (dist < 1||dist>30)
                 {
@@ -201,7 +201,7 @@ public class PlayerControl : SpaceShips
 
                 float dist = Vector3.Distance(TheHook.transform.position, TheHooked.transform.position); // Hook Distance 
                 TheHook.transform.LookAt(TheHooked.transform.position);
-                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, TheHooked.transform.position, 10 * Time.deltaTime);
+                TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, TheHooked.transform.position, 20 * Time.deltaTime);
                 if (dist < 1)
                 {
                     hookingStep = 2;

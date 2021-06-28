@@ -103,8 +103,12 @@ public class Currency : MonoBehaviour
     public GameObject UpgradesList;
     public RectTransform WeaponShopContent;
     public RectTransform UpgradesShopContent;
+    public GameObject Wormhole;
+    public GameObject WormholeCompus;
     bool FixMoneySet;
     Vector3 prev;
+    bool alreadyInShop;
+    float distFromWormhole;
 
     // Start is called before the first frame update
     private void Awake()
@@ -117,7 +121,7 @@ public class Currency : MonoBehaviour
     }
 
     void Start()
-    {
+    {       
         objectPooler = ObjectPooler.Instance;
         foreach(Item i in Items)
         {
@@ -130,12 +134,21 @@ public class Currency : MonoBehaviour
         }
         Shop();
         UpgradeShop();
+        SpawnWormHole();
     }
 
     // Update is called once per frame
     void Update()
     {
         UpdateMoney();
+        if (WormholeCompus.activeSelf)
+        {
+            WormholeCompus.transform.LookAt(Wormhole.transform.position);
+        }
+        distFromWormhole = Vector3.Distance(SM.Spaceship.transform.position, Wormhole.transform.position);
+        if (distFromWormhole < 4 && alreadyInShop == false) { alreadyInShop = true;  SM.VisitShop(); }
+        else if (distFromWormhole >= 4) { alreadyInShop = false; }
+        
     }
 
     public void UpdateMoney()
@@ -227,6 +240,24 @@ public class Currency : MonoBehaviour
         }
         UpgradesShopContent.sizeDelta = new Vector2(UpgradesShopContent.sizeDelta.x, Upgrades.Count * 100);
     }
+
+    public void SpawnWormHole()
+    {
+        float x = Random.Range(50, 100 + 1);
+        if (Random.Range(0, 2) == 0) { x *= -1; }
+        float z = Random.Range(50, 100 + 1);
+        if (Random.Range(0, 2) == 0) { z *= -1; }
+        float r = Random.Range(0, 361);
+        Wormhole.transform.position = new Vector3(SM.Spaceship.transform.position.x + x, SM.Spaceship.transform.position.y, SM.Spaceship.transform.position.z + z);
+    }
+    
+    public void TurnCompus()
+    {
+        if (WormholeCompus.activeSelf) { WormholeCompus.SetActive(false); }
+        else { if (distFromWormhole > 250) SpawnWormHole(); WormholeCompus.SetActive(true); } 
+    }
+   
+    
 
 
     public void UpgradeHealth()

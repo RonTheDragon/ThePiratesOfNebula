@@ -188,26 +188,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 576979878139067030, guid: f232ca76f4d82b142ae7116b6e0c27db,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1851138279517936075, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 923307265}
+      objectReference: {fileID: 899593046}
     - target: {fileID: 6971443977388765159, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 923307265}
+      objectReference: {fileID: 899593046}
     - target: {fileID: 7180644291700091508, guid: f232ca76f4d82b142ae7116b6e0c27db,
         type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 923307265}
+      objectReference: {fileID: 899593046}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f232ca76f4d82b142ae7116b6e0c27db, type: 3}
 --- !u!1 &705507993
@@ -302,13 +297,13 @@ Transform:
   m_Father: {fileID: 1401818308}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!43 &923307265
+--- !u!43 &899593046
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1804
+  m_Name: pb_Mesh-1532
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

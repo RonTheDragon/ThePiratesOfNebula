@@ -171,7 +171,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -4897,6 +4897,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -4747917413154575537, guid: 1d25476ad4a602f489c4d35e61d39726,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a40427b869b5c5b45967377f8bbe9a2d, type: 2}
+    - target: {fileID: -4747917413154575537, guid: 1d25476ad4a602f489c4d35e61d39726,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7ec452d53a058ca40aa9a8b4681f6fd2, type: 2}
+    - target: {fileID: -4747917413154575537, guid: 1d25476ad4a602f489c4d35e61d39726,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62374562268af44478b73e58836581a3, type: 2}
+    - target: {fileID: -4747917413154575537, guid: 1d25476ad4a602f489c4d35e61d39726,
+        type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: ffd7201a000e43548bae6abdfa88e722, type: 2}
     - target: {fileID: 919132149155446097, guid: 1d25476ad4a602f489c4d35e61d39726,
         type: 3}
       propertyPath: m_Name

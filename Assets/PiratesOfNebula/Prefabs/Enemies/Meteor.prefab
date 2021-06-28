@@ -69,6 +69,7 @@ MonoBehaviour:
   - MeteorPop
   TurnOffWhenDeath:
   - {fileID: 7371405489054994960}
+  DamageIndicator: {fileID: 0}
 --- !u!54 &7371405489054994970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,6 +210,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 059b82f9b560c8b47abea74db4304fb0, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 3d393cf27245fab49bcb17c9c13d1466,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a9c7e5eae95619148a5b1dfb98131ad5, type: 2}
     - target: {fileID: 919132149155446097, guid: 3d393cf27245fab49bcb17c9c13d1466,
         type: 3}
       propertyPath: m_Name

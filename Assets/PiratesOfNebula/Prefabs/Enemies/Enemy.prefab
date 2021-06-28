@@ -198,6 +198,7 @@ MonoBehaviour:
   - {fileID: 2552027404687969655}
   - {fileID: 3993143354713760685}
   - {fileID: 3993143353781038196}
+  DamageIndicator: {fileID: 0}
 --- !u!54 &2552027404687969661
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10729,6 +10730,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: a40427b869b5c5b45967377f8bbe9a2d, type: 2}
+    - target: {fileID: -7511558181221131132, guid: 74779679369fc3347b30910643e24cac,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8afe38ddf96bc684783a59fe604ae28d, type: 2}
     - target: {fileID: 919132149155446097, guid: 74779679369fc3347b30910643e24cac,
         type: 3}
       propertyPath: m_Name
