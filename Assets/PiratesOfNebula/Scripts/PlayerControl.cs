@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControl : SpaceShips
 {
+    public GameObject TutorialGO;
     public GameObject TheHook;
     LineRenderer LR;
     Currency currency;
@@ -62,8 +63,16 @@ public class PlayerControl : SpaceShips
         jsd = Vector3.Distance(joystick.transform.position, joystickH.position); //Joystick Distance
         Maxjsd = Vector3.Distance(joystick.transform.position, JoystickLimit.position);
         jsd = jsd / Maxjsd;
-        if (jsd == 0 && docked==false) NotMoving = true;
-        else NotMoving = false;
+        if (jsd == 0 && docked == false) NotMoving = true;
+        else
+        {
+            NotMoving = false;
+            if (TutorialGO.GetComponent<Tutorial>().TutorialMain.activeInHierarchy)
+            {
+                TutorialGO.GetComponent<Tutorial>().ThirdTutorial();
+            }
+      
+        }
         if (jsd < 0.4f) jsd = 0.4f;
 
         if (jsd > 0.9f) { MoveAxl += 0.1f * Time.deltaTime; }
@@ -270,6 +279,10 @@ public class PlayerControl : SpaceShips
     public void PressingFire(int Side)
     {
         ShootingSide[Side] = true;
+        if (TutorialGO.GetComponent<Tutorial>().TutorialMain.activeInHierarchy)
+        {
+            TutorialGO.GetComponent<Tutorial>().FourthTutorial();
+        }
     }
     public void StopPressingFire(int Side)
     {

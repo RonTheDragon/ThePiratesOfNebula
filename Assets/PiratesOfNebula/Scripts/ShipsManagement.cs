@@ -48,6 +48,12 @@ public class ShipsManagement : MonoBehaviour
             {
                 p.Cannons[i] = AllWeaponsInGameList[d.ItemSlots[i]];
             }
+
+
+        }
+        else
+        {
+            GetComponent<Tutorial>().StartTutorial();
         }
         
     }
