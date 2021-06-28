@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3980375802568666025}
   - component: {fileID: 7309456044778887064}
   - component: {fileID: 3475348884285440323}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8743333747180105230}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Gunpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 3552690560302165773}
   - component: {fileID: 3313874063793948029}
   - component: {fileID: -5349080878318000369}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}

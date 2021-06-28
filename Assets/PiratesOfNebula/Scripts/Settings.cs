@@ -24,6 +24,11 @@ public class Settings : MonoBehaviour
     Resolution[] resolutions;
     CanvasGroup CG;
 
+    public Image MuteImage;
+
+    public Sprite MuteSprite;
+    public Sprite UnmuteSprite;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -55,6 +60,8 @@ public class Settings : MonoBehaviour
         QualitySettings.SetQualityLevel(PlayerPrefs.GetInt("Quality"));
         Resolution R = resolutions[PlayerPrefs.GetInt("Res")];
         Screen.SetResolution(R.width, R.height, Screen.fullScreen);
+
+        UnmuteSound();
     }
 
     // Update is called once per frame
@@ -67,6 +74,16 @@ public class Settings : MonoBehaviour
     public void SetVolume(float volume)
     {
         sound = volume;
+    }
+    public void MuteSound()
+    {
+        sound = -80f;
+        MuteImage.sprite = MuteSprite;
+    }
+    public void UnmuteSound()
+    {
+        sound = Sliders[1].value;
+        MuteImage.sprite = UnmuteSprite;
     }
     public void SetMusic(float volume)
     {
