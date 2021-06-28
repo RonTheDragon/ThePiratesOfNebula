@@ -89,6 +89,8 @@ public class Item : Product
 public class Currency : MonoBehaviour
 {
     ShipsManagement SM;
+    Health Hp;
+    PlayerControl PC;
     ObjectPooler objectPooler;
     public List<Item> Items;
     public List<Upgrade> Upgrades;
@@ -102,13 +104,16 @@ public class Currency : MonoBehaviour
     public RectTransform WeaponShopContent;
     public RectTransform UpgradesShopContent;
     bool FixMoneySet;
+    Vector3 prev;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        prev = MoneyUI.gameObject.transform.localScale;
         SM = GetComponent<ShipsManagement>();
-        
-        
+        Hp = SM.Spaceship.GetComponent<Health>();
+        PC = SM.Spaceship.GetComponent<PlayerControl>();
+
     }
 
     void Start()
@@ -149,7 +154,6 @@ public class Currency : MonoBehaviour
     {
         if (Time.timeScale > 0)
         {
-            Vector3 prev = MoneyUI.gameObject.transform.localScale;
             MoneyUI.gameObject.transform.localScale = new Vector3() { x = prev.x * 2, y = prev.y * 2, z = prev.z * 2 };
             MoneyUI.color = Color.yellow;
             yield return new WaitForSeconds(0.5f);
@@ -227,13 +231,29 @@ public class Currency : MonoBehaviour
 
     public void UpgradeHealth()
     {
-        Health Hp = SM.Spaceship.GetComponent<Health>();
+        
         Hp.MaxHp += 50;
         Hp.Hp = Hp.MaxHp;
     }
     public void UpgradeSpeed()
     {
-        PlayerControl PC = SM.Spaceship.GetComponent<PlayerControl>();
+       
         PC.MovementSpeed += 2;
+    }
+    public void UpgradeRaids()
+    {
+        
+        PC.MilkTime -= 0.4f;
+        PC.PiratesAmount++;
+    }
+    public void UpgradeHealing()
+    {
+        
+        Hp.HpRegan++;
+    }
+    public void UpgradeMotor()
+    {
+        
+        PC.MaxHeat += 25;
     }
 }

@@ -35,7 +35,11 @@ public class PlayerControl : SpaceShips
     public GameObject[] SwitchJoysickToUndock;
     public float CameraDistFromShip;
     ObjectPooler objectPooler;
-    GameObject[] Pirates = new GameObject[3];
+    GameObject[] Pirates = new GameObject[9];
+    [HideInInspector]
+    public int PiratesAmount = 4;
+    [HideInInspector]
+    public float MilkTime = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -166,9 +170,10 @@ public class PlayerControl : SpaceShips
             {
                 if (P?.activeSelf == true)
                 {
-                    P.transform.position = Vector3.MoveTowards(P.transform.position, transform.position, 20*Time.deltaTime);
+                    float pdist = Vector3.Distance(P.transform.position, transform.position);
+                    P.transform.position = Vector3.MoveTowards(P.transform.position, transform.position, (pdist * 0.01f) + 5 *Time.deltaTime);
                     P.transform.LookAt(transform.position);
-                    if (Vector3.Distance(P.transform.position, transform.position) < 0.1f) P.SetActive(false);
+                    if (pdist < 0.1f) P.SetActive(false);
                 }
             }
         }
@@ -182,10 +187,10 @@ public class PlayerControl : SpaceShips
                 
                 TheHook.transform.position = Vector3.MoveTowards(TheHook.transform.position, transform.position, 20 * Time.deltaTime); //hook goes back to ship
                 float dist = Vector3.Distance(TheHook.transform.position, transform.position);
-                if (dist < 1)
+                if (dist < 1||dist>30)
                 {
                     TheHook.SetActive(false);
-                }
+                }   
             }
         }
         else
@@ -215,7 +220,7 @@ public class PlayerControl : SpaceShips
 
                 if (dist < TheHookedRange && !docked && NotMoving)
                 {
-                    hookingStep = 3; docked = true; MilkingTime = 1;
+                    hookingStep = 3; docked = true; MilkingTime = MilkTime;
                     StartCoroutine(SpawnPirates(gameObject));
                 }
                 else if (dist > 10)
@@ -252,9 +257,10 @@ public class PlayerControl : SpaceShips
                 {
                     if (P?.activeSelf == true)
                     {
-                        P.transform.position = Vector3.MoveTowards(P.transform.position, TheHooked.transform.position, 5 * Time.deltaTime);
+                        float pdist = Vector3.Distance(P.transform.position, TheHooked.transform.position);
+                        P.transform.position = Vector3.MoveTowards(P.transform.position, TheHooked.transform.position, (pdist*0.01f) + 2 * Time.deltaTime);
                         P.transform.LookAt(TheHooked.transform.position);
-                        if (Vector3.Distance(P.transform.position, TheHooked.transform.position) < 0.1f) P.SetActive(false);
+                        if (pdist < 0.1f) P.SetActive(false);
                     }
                 }
 
@@ -266,7 +272,7 @@ public class PlayerControl : SpaceShips
                 }
                 if (MilkingTime <= 0 && dist<5)
                 {
-                    MilkingTime = 1;
+                    MilkingTime = MilkTime;
                     if (pudge != null)
                     {
                         
@@ -313,7 +319,7 @@ public class PlayerControl : SpaceShips
 
     IEnumerator SpawnPirates(GameObject SpawnLocation)
     {
-        for (int i = 0; i < Pirates.Length; i++)
+        for (int i = 0; i < PiratesAmount; i++)
         {
             Pirates[i] = objectPooler.SpawnFromPool("Pirates", SpawnLocation.transform.position, SpawnLocation.transform.rotation);
             Pirates[i].GetComponent<Animation>().Play("PirateJumping");

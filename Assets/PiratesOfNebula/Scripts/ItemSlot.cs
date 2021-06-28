@@ -39,7 +39,7 @@ public class ItemSlot : MonoBehaviour , IDropHandler
         Weapon c = Pc.Cannons[SlotNumber].GetComponent<Weapon>();
         if (c != null)
         {
-            GameObject i = Instantiate(c.WeaponIcon, transform.parent, false);
+            GameObject i = Instantiate(c.WeaponIcon, transform, false);
             RectTransform r = i.GetComponent<RectTransform>();
             RectTransform rr = gameObject.GetComponent<RectTransform>();
             r.anchoredPosition = rr.anchoredPosition;

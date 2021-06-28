@@ -78,12 +78,14 @@ public class Settings : MonoBehaviour
     public void MuteSound()
     {
         sound = -80f;
-        MuteImage.sprite = MuteSprite;
+        if (MuteImage!=null)
+            MuteImage.sprite = MuteSprite;
     }
     public void UnmuteSound()
     {
         sound = Sliders[1].value;
-        MuteImage.sprite = UnmuteSprite;
+        if (MuteImage != null)
+            MuteImage.sprite = UnmuteSprite;
     }
     public void SetMusic(float volume)
     {

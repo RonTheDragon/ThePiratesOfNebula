@@ -11,32 +11,17 @@ public class ShipsManagement : MonoBehaviour
     public GameObject WeaponsList;
     public List<GameObject> Weapons;
     public List<GameObject> AllWeaponsInGameList;
-
+    Currency c;
+    PlayerData d;
 
     private void Awake()
     {
         if (PlayerPrefs.GetInt("NewGame")==0)
         {
-            PlayerData d = SaveSystem.Load(PlayerPrefs.GetInt("slot"));
-            Currency c = GetComponent<Currency>();
+            d = SaveSystem.Load(PlayerPrefs.GetInt("slot"));
+            c = GetComponent<Currency>();
             c.Money = d.Money; //set Money
-            for (int i = 0; i < c.Items.Count; i++) //Set Shop
-            {
-                if (d.Shop[i])
-                {
-                    c.Items[i].AlreadyBought();
-                } 
-            }
-            for (int i = 0; i < c.Upgrades.Count; i++) //Set Shop
-            {
-                int count = 0;
-                while(c.Upgrades[i].Level<d.Upgrades[i])
-                {
-                    c.Upgrades[i].Upgraded();
-                    count++;
-                    if (count > 100) break;
-                }
-            } c.UpgradeShop();
+            StartCoroutine(UpdateTheShop());
             Weapons = new List<GameObject>();
             for (int i = 0; i < d.Inventory.Length; i++) //Set Inventory
             {
@@ -56,6 +41,30 @@ public class ShipsManagement : MonoBehaviour
             GetComponent<Tutorial>().StartTutorial();
         }
         
+    }
+
+    IEnumerator UpdateTheShop()
+    {
+        yield return new WaitForSeconds(0.01f);
+
+        for (int i = 0; i < c.Items.Count; i++) //Set Shop
+        {
+            if (d.Shop[i])
+            {
+                c.Items[i].AlreadyBought();
+            }
+        }
+        for (int i = 0; i < c.Upgrades.Count; i++) //Set Shop
+        {
+            int count = 0;
+            while (c.Upgrades[i].Level < d.Upgrades[i])
+            {
+                c.Upgrades[i].Upgraded();
+                count++;
+                if (count > 100) break;
+            }
+        }
+        c.UpgradeShop();
     }
 
     void Start()

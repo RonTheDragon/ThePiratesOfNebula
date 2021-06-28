@@ -46,7 +46,7 @@ public abstract class SpaceShips : MonoBehaviour
             else Heatbar.color = Color.Lerp(Color.yellow, Color.red, Heat / (MaxHeat*1.5f));
             Heatbar.fillAmount = Heat / MaxHeat;
         }
-        if (Heat> 100) { OverHeated = true; Heat = 100; GetComponent<AudioManager>()?.PlaySound(Sound.Activation.Custom, "OverHeat"); StartCoroutine(FlashHeat()); }
+        if (Heat> MaxHeat) { OverHeated = true; Heat = MaxHeat; GetComponent<AudioManager>()?.PlaySound(Sound.Activation.Custom, "OverHeat"); StartCoroutine(FlashHeat()); }
         else if (Heat > 0) { Heat -= CoolingHeat * Time.deltaTime; }
         else if (Heat < 0) { OverHeated = false; Heat = 0;}
     }
