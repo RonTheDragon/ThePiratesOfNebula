@@ -25,7 +25,7 @@ public class WormHole : MonoBehaviour
                 Hookable H = Victim.GetComponent<Hookable>();
                 if (H == null) { Suck(Victim, dist, 200); } //if Meteor
                 else if (H.hookable) { Suck(Victim, dist, 1000); H.UnHooked(); } //if Hookable Ship
-                else { Suck(Victim, dist, 1); } //if a Normal Ship
+                else { Suck(Victim, dist, 3); } //if a Normal Ship
                 if (dist < 1) {
                     Health hp = Victim.GetComponent<Health>(); if (hp != null) hp.Hp = 0;
                     if (H != null)

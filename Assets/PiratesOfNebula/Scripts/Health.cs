@@ -98,15 +98,21 @@ public class Health : MonoBehaviour
     {
         GetComponent<AudioManager>()?.PlaySound(Sound.Activation.Custom, "Ouch");
         DamageIndicator.SetActive(true);
+        Healthbar.color = Color.white;
         yield return new WaitForSeconds(0.02f);
         DamageIndicator.SetActive(false);
+        Healthbar.color = Color.white;
         yield return new WaitForSeconds(0.02f);
         DamageIndicator.SetActive(true);
+        Healthbar.color = Color.white;
         yield return new WaitForSeconds(0.02f);
         DamageIndicator.SetActive(false);
+        Healthbar.color = Color.white;
         yield return new WaitForSeconds(0.02f);
         DamageIndicator.SetActive(true);
+        Healthbar.color = Color.white;
         yield return new WaitForSeconds(0.02f);
         DamageIndicator.SetActive(false);
+        Healthbar.color = Color.white;
     }
 }

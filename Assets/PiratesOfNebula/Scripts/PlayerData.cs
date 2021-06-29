@@ -10,6 +10,7 @@ public class PlayerData
     public int[] Upgrades;
     public int[] Inventory;
     public int[] ItemSlots;
+    public int Color;
     
     public PlayerData(GameObject Player)
     {
@@ -24,6 +25,10 @@ public class PlayerData
         for (int i = 0; i < c.Upgrades.Count; i++)
         {
             Upgrades[i] = c.Upgrades[i].Level;
+        }
+        for (int i = 0; i < c.Textures.Count; i++)
+        {
+            if (c.Textures[i].Used) { Color = i; }
         }
 
         ShipsManagement s = Player.GetComponent<ShipsManagement>(); //Organize Inventory

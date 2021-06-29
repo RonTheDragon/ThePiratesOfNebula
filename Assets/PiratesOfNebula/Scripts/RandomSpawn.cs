@@ -35,7 +35,7 @@ public class RandomSpawn : MonoBehaviour
         if (Random.Range(0, 2) == 0) { z *= -1; }
         float r = Random.Range(0, 361);
         Vector3 pos = new Vector3(Spaceship.transform.position.x+x, Spaceship.transform.position.y, Spaceship.transform.position.z+z);
-        GameObject ob = objectPooler.SpawnFromPool(prefab, pos, transform.rotation);
+        GameObject ob = objectPooler.SpawnFromPool(prefab, pos, transform.rotation,true);
         ob.GetComponent<SpawnedMechanic>().SummonedByThePlayer = Spaceship;
         
        // ob.transform.Rotate(0, r, 0);

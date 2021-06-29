@@ -40,6 +40,7 @@ public class PlayerControl : SpaceShips
     public int PiratesAmount = 4;
     [HideInInspector]
     public float MilkTime = 2;
+    bool PiratesRaiding;
 
     // Start is called before the first frame update
     void Start()
@@ -176,6 +177,11 @@ public class PlayerControl : SpaceShips
                     if (pdist < 0.1f) P.SetActive(false);
                 }
             }
+
+            if (PiratesRaiding)
+            {
+                StartCoroutine(SpawnPirates(TheHooked)); PiratesRaiding = false;
+            }
         }
 
         if (hookingStep == 0) // Hook Back / Not Hooking
@@ -221,7 +227,7 @@ public class PlayerControl : SpaceShips
                 if (dist < TheHookedRange && !docked && NotMoving)
                 {
                     hookingStep = 3; docked = true; MilkingTime = MilkTime;
-                    StartCoroutine(SpawnPirates(gameObject));
+                    StartCoroutine(SpawnPirates(gameObject)); PiratesRaiding = true;
                 }
                 else if (dist > 10)
                 {
@@ -307,7 +313,6 @@ public class PlayerControl : SpaceShips
     public void StopDocking()
     {
         hookingStep = 2;
-        StartCoroutine(SpawnPirates(TheHooked));
         SwitchJoysickToUndock[0].SetActive(true);
         SwitchJoysickToUndock[1].SetActive(false);
         if (pudge != null)
@@ -319,11 +324,22 @@ public class PlayerControl : SpaceShips
 
     IEnumerator SpawnPirates(GameObject SpawnLocation)
     {
+        Vector3 BeforeBlastPosition = SpawnLocation.transform.position;
         for (int i = 0; i < PiratesAmount; i++)
         {
-            Pirates[i] = objectPooler.SpawnFromPool("Pirates", SpawnLocation.transform.position, SpawnLocation.transform.rotation);
-            Pirates[i].GetComponent<Animation>().Play("PirateJumping");
-            yield return new WaitForSeconds(0.2f);
+            if (SpawnLocation.activeSelf == true)
+            {
+                Pirates[i] = objectPooler.SpawnFromPool("Pirates", SpawnLocation.transform.position, SpawnLocation.transform.rotation);
+                Pirates[i].GetComponent<Animation>().Play("PirateJumping");
+                yield return new WaitForSeconds(0.2f);
+            }
+            else //if The Spawn Location Blew Up
+            {
+                Pirates[i] = objectPooler.SpawnFromPool("Pirates", BeforeBlastPosition, transform.rotation);
+                Pirates[i].GetComponent<Animation>().Play("PirateJumping");
+                yield return new WaitForSeconds(0.2f);
+            }
+            
         }
     }
 
@@ -364,7 +380,7 @@ public class PlayerControl : SpaceShips
     }
     void StopHooking()
     {
-        TheHook.GetComponent<Hookable>()?.UnHooked();
+        TheHooked.GetComponent<Hookable>()?.UnHooked();
         hookingStep = 0; TheHooked = null; TheHookedRange = 0;  
     }
     

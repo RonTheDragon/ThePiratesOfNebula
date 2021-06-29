@@ -85,6 +85,25 @@ public class Item : Product
         Bought = true;
     }
 }
+[System.Serializable]
+public class Colors
+{
+    public string Name;
+    public Color MainColor;
+    public Color SecondaryColor;
+    [HideInInspector]
+    public Currency Player;
+    [HideInInspector]
+    public bool Used;
+    public void ChangeColor()
+    {
+        MeshRenderer MR = Player.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<MeshRenderer>();
+        MR.materials[1].color = SecondaryColor;
+        MR.materials[0].color = MainColor;
+        foreach (Colors c in Player.Textures) c.Used = false;
+        Used = true;
+    }
+}
 
 public class Currency : MonoBehaviour
 {
@@ -94,15 +113,19 @@ public class Currency : MonoBehaviour
     ObjectPooler objectPooler;
     public List<Item> Items;
     public List<Upgrade> Upgrades;
+    public List<Colors> Textures;
     public int Money;
     private int money=-1;
     public TMP_Text MoneyUI;
     public GameObject button;
     public GameObject Upgradebutton;
+    public GameObject ColorButton;
     public GameObject WeaponsList;
     public GameObject UpgradesList;
+    public GameObject ColorsList;
     public RectTransform WeaponShopContent;
     public RectTransform UpgradesShopContent;
+    public RectTransform ColorsShopContent;
     public GameObject Wormhole;
     public GameObject WormholeCompus;
     bool FixMoneySet;
@@ -132,8 +155,13 @@ public class Currency : MonoBehaviour
             i.SetCurrency(this);
             i.SetCosts();
         }
+        foreach (Colors i in Textures)
+        {
+            i.Player = this;
+        }
         Shop();
         UpgradeShop();
+        ColorShop();
         SpawnWormHole();
     }
 
@@ -167,7 +195,7 @@ public class Currency : MonoBehaviour
     {
         if (Time.timeScale > 0)
         {
-            MoneyUI.gameObject.transform.localScale = new Vector3() { x = prev.x * 2, y = prev.y * 2, z = prev.z * 2 };
+            MoneyUI.gameObject.transform.localScale = new Vector3() { x = prev.x * 1.2f, y = prev.y * 1.2f, z = prev.z * 1.2f };
             MoneyUI.color = Color.yellow;
             yield return new WaitForSeconds(0.5f);
             MoneyUI.gameObject.transform.localScale = prev;
@@ -198,14 +226,16 @@ public class Currency : MonoBehaviour
                 count++;
                 GameObject g = Instantiate(button, WeaponsList.transform,false);
                 TMP_Text t = g.transform.GetChild(0).GetComponent<TMP_Text>();
-                t.text = $"{i.Name} {i.Cost}";
+                t.text = $"{i.Name}";
+                TMP_Text tt = g.transform.GetChild(2).GetComponent<TMP_Text>();
+                tt.text = $"Costs: {i.Cost}$";
                 Button b = g.GetComponent<Button>();
                 b.onClick.AddListener(i.Buy);
                 Image Im = g.transform.GetChild(1).GetComponent<Image>();
                 Im.sprite = i.Weapon.GetComponent<Weapon>().WeaponIcon.GetComponent<Image>().sprite;
             }
         }
-        WeaponShopContent.sizeDelta = new Vector2(WeaponShopContent.sizeDelta.x, count * 100);
+        WeaponShopContent.sizeDelta = new Vector2(WeaponShopContent.sizeDelta.x, count * 300);
     }
     public void UpgradeShop()
     {
@@ -222,7 +252,11 @@ public class Currency : MonoBehaviour
                 
                 GameObject g = Instantiate(Upgradebutton, UpgradesList.transform, false);
                 TMP_Text t = g.transform.GetChild(0).GetComponent<TMP_Text>();
-                t.text = $"{i.Name} {i.Costs[i.Level]}$ <{i.Level+1}>";
+                t.text = $"{i.Name}";
+                TMP_Text tt = g.transform.GetChild(2).GetComponent<TMP_Text>();
+                tt.text = $"Costs:{i.Costs[i.Level]}$ ";
+                TMP_Text ttt = g.transform.GetChild(3).GetComponent<TMP_Text>();
+                ttt.text = $"lvl {i.Level + 1}";
                 Button b = g.GetComponent<Button>();
                 b.onClick.AddListener(i.Buy);
                 Image Im = g.transform.GetChild(1).GetComponent<Image>();
@@ -233,12 +267,31 @@ public class Currency : MonoBehaviour
             {
                 GameObject g = Instantiate(Upgradebutton, UpgradesList.transform, false);
                 TMP_Text t = g.transform.GetChild(0).GetComponent<TMP_Text>();
-                t.text = $"{i.Name} MAX <{i.Level + 1}>";
+                t.text = $"{i.Name}";
+                TMP_Text tt = g.transform.GetChild(2).GetComponent<TMP_Text>();
+                tt.text = "Maxed Out";
+                TMP_Text ttt = g.transform.GetChild(3).GetComponent<TMP_Text>();
+                ttt.text = $"lvl {i.Level + 1}";
                 Image Im = g.transform.GetChild(1).GetComponent<Image>();
                 if (i.Icon != null) Im.sprite = i.Icon;
             }
         }
-        UpgradesShopContent.sizeDelta = new Vector2(UpgradesShopContent.sizeDelta.x, Upgrades.Count * 100);
+        UpgradesShopContent.sizeDelta = new Vector2(UpgradesShopContent.sizeDelta.x, Upgrades.Count * 300);
+    }
+
+    public void ColorShop()
+    {
+        foreach (Colors i in Textures)
+        {         
+            GameObject g = Instantiate(ColorButton, ColorsList.transform, false);
+            ColorBlock CB = g.transform.GetComponent<Button>().colors;
+            CB.normalColor = i.MainColor;
+            g.transform.GetComponent<Button>().colors = CB;
+            Image Im = g.transform.GetChild(0).GetComponent<Image>();
+            Im.color = i.SecondaryColor;
+            g.GetComponent<Button>().onClick.AddListener(i.ChangeColor);
+            
+        }
     }
 
     public void SpawnWormHole()

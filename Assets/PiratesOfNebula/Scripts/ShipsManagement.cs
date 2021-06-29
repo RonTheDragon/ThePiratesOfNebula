@@ -65,6 +65,7 @@ public class ShipsManagement : MonoBehaviour
             }
         }
         c.UpgradeShop();
+        c.Textures[d.Color].ChangeColor();
     }
 
     void Start()
