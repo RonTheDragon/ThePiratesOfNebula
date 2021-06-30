@@ -332,24 +332,27 @@ public class PlayerControl : SpaceShips
 
     IEnumerator SpawnPirates(GameObject SpawnLocation)
     {
-        if (SpawnLocation.activeSelf == true)
+        if (SpawnLocation != null)
         {
-            Vector3 BeforeBlastPosition = SpawnLocation.transform.position;
-            for (int i = 0; i < PiratesAmount; i++)
+            if (SpawnLocation.activeSelf == true)
             {
-                if (SpawnLocation.activeSelf == true)
+                Vector3 BeforeBlastPosition = SpawnLocation.transform.position;
+                for (int i = 0; i < PiratesAmount; i++)
                 {
-                    Pirates[i] = objectPooler.SpawnFromPool("Pirates", SpawnLocation.transform.position, SpawnLocation.transform.rotation);
-                    Pirates[i].GetComponent<Animation>().Play("PirateJumping");
-                    yield return new WaitForSeconds(0.2f);
-                }
-                else //if The Spawn Location Blew Up
-                {
-                    Pirates[i] = objectPooler.SpawnFromPool("Pirates", BeforeBlastPosition, transform.rotation);
-                    Pirates[i].GetComponent<Animation>().Play("PirateJumping");
-                    yield return new WaitForSeconds(0.2f);
-                }
+                    if (SpawnLocation.activeSelf == true)
+                    {
+                        Pirates[i] = objectPooler.SpawnFromPool("Pirates", SpawnLocation.transform.position, SpawnLocation.transform.rotation);
+                        Pirates[i].GetComponent<Animation>().Play("PirateJumping");
+                        yield return new WaitForSeconds(0.2f);
+                    }
+                    else //if The Spawn Location Blew Up
+                    {
+                        Pirates[i] = objectPooler.SpawnFromPool("Pirates", BeforeBlastPosition, transform.rotation);
+                        Pirates[i].GetComponent<Animation>().Play("PirateJumping");
+                        yield return new WaitForSeconds(0.2f);
+                    }
 
+                }
             }
         }
         yield return new WaitForSeconds(0.0f);
@@ -392,7 +395,10 @@ public class PlayerControl : SpaceShips
     }
     void StopHooking()
     {
-        TheHooked.GetComponent<Hookable>()?.UnHooked();
+        if (TheHooked != null)
+        {
+            TheHooked.GetComponent<Hookable>()?.UnHooked();
+        }
         hookingStep = 0; TheHooked = null; TheHookedRange = 0;  
     }
     

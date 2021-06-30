@@ -278,6 +278,7 @@ MonoBehaviour:
   - {fileID: 3901966106558339178, guid: 640abe43f0b6f404ea064f11e24dddd0, type: 3}
   - {fileID: 1566401823648418813, guid: 98a906617fdee0244b09e65aac718e40, type: 3}
   - {fileID: 2182713826253824143, guid: f696234413abd4e43a9312a68932d12c, type: 3}
+  - {fileID: 1437261594543239398, guid: 1593a4563ca69334990918f3729585af, type: 3}
   Target: {fileID: 0}
 --- !u!65 &6401892739897706172
 BoxCollider:
