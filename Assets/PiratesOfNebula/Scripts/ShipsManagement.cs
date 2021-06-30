@@ -15,6 +15,8 @@ public class ShipsManagement : MonoBehaviour
     PlayerData d;
     bool Alive = true;
 
+    public GameObject GameOverPanel;
+
     private void Awake()
     {c = GetComponent<Currency>();
         if (PlayerPrefs.GetInt("NewGame")==0)
@@ -41,6 +43,8 @@ public class ShipsManagement : MonoBehaviour
             GetComponent<Tutorial>().StartTutorial();
             StartCoroutine(FirstColor());
         }
+
+        GameOverPanel.SetActive(false);
         
     }
 
@@ -92,7 +96,7 @@ public class ShipsManagement : MonoBehaviour
     IEnumerator GameOver()
     {
         yield return new WaitForSeconds(2);
-
+        GameOverPanel.SetActive(true);
     }
     public void SwitchWeapons()
     {
@@ -114,6 +118,13 @@ public class ShipsManagement : MonoBehaviour
     {
         SaveSystem.Save(gameObject, PlayerPrefs.GetInt("slot"));
         SceneManager.LoadScene("OpenScreen");
+    }
+
+    public void RestartGame()
+    {
+        SaveSystem.Save(gameObject, PlayerPrefs.GetInt("slot"));
+        PlayerPrefs.SetInt("NewGame", 0);
+        SceneManager.LoadScene("SampleScene");
     }
 
     void ChangeMenu(int Menu)
