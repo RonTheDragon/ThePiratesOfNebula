@@ -13,6 +13,7 @@ public class ShipsManagement : MonoBehaviour
     public List<GameObject> AllWeaponsInGameList;
     Currency c;
     PlayerData d;
+    bool Alive = true;
 
     private void Awake()
     {c = GetComponent<Currency>();
@@ -82,9 +83,17 @@ public class ShipsManagement : MonoBehaviour
   
     void Update()
     {
-   
+        if (Spaceship.activeSelf == false && Alive)
+        {
+            Alive = false;
+            StartCoroutine(GameOver());
+        }
     }
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2);
 
+    }
     public void SwitchWeapons()
     {
         ChangeMenu(1);
