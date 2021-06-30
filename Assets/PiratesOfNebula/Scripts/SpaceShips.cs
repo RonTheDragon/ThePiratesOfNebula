@@ -13,9 +13,15 @@ public abstract class SpaceShips : MonoBehaviour
     public float CoolingHeat=30;
     protected bool OverHeated;
     public Image Heatbar;
+    protected Health health;
 
     protected abstract void Movement();
     protected abstract void Combat();
+
+    void Awake()
+    {
+        health = GetComponent<Health>();
+    }
 
     protected void Update()
     {
@@ -40,15 +46,21 @@ public abstract class SpaceShips : MonoBehaviour
     }
     public void HeatSystem()
     {
-        if (Heatbar != null)
+        if (health.Froze) { Heatbar.color = Color.blue; Heatbar.fillAmount = 1; }
+        else
         {
-            if (OverHeated) Heatbar.color = Color.red;
-            else Heatbar.color = Color.Lerp(Color.yellow, Color.red, Heat / (MaxHeat*1.5f));
-            Heatbar.fillAmount = Heat / MaxHeat;
+            float Temp = health.Tempeture * -0.1f;
+            if (health.Burn) Temp = -10;
+            if (Heatbar != null)
+            {
+                if (OverHeated) Heatbar.color = Color.red;
+                else Heatbar.color = Color.Lerp(Color.yellow, Color.red, Heat / (MaxHeat * 1.5f));
+                Heatbar.fillAmount = Heat / MaxHeat;
+            }
+            if (Heat > MaxHeat) { OverHeated = true; Heat = MaxHeat; GetComponent<AudioManager>()?.PlaySound(Sound.Activation.Custom, "OverHeat"); StartCoroutine(FlashHeat()); }
+            else if (Heat > 0) { Heat -= (CoolingHeat + Temp) * Time.deltaTime; }
+            else if (Heat < 0) { OverHeated = false; Heat = 0; }
         }
-        if (Heat> MaxHeat) { OverHeated = true; Heat = MaxHeat; GetComponent<AudioManager>()?.PlaySound(Sound.Activation.Custom, "OverHeat"); StartCoroutine(FlashHeat()); }
-        else if (Heat > 0) { Heat -= CoolingHeat * Time.deltaTime; }
-        else if (Heat < 0) { OverHeated = false; Heat = 0;}
     }
 
     IEnumerator FlashHeat()

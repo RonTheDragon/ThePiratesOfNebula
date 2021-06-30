@@ -70,6 +70,10 @@ MonoBehaviour:
   TurnOffWhenDeath:
   - {fileID: 7371405489054994960}
   DamageIndicator: {fileID: 0}
+  NoTempeture: 1
+  Tempeture: 0
+  Burn: 0
+  Froze: 0
 --- !u!54 &7371405489054994970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -118,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDamage: 30
   Knockback: 20
+  TempetureEffect: 0
   CantHitPlayer: 0
   CantHitEnemy: 0
   DamageCooldown: 1

@@ -83,15 +83,24 @@ public class ObjectPooler : MonoBehaviour
 
         return objectToSpawn;
     }
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation , Vector3 Scale)
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation , Vector3 Scale, bool DontSpawnIfActive = false)
     {
         if (!poolDictionary.ContainsKey(tag))
         {
             Debug.LogWarning("Pool with tag " + tag + " doesn't excist.");
             return null;
         }
-
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        if (DontSpawnIfActive)
+        {
+            int Count = 0;
+            while (objectToSpawn.activeSelf == true && Count < 200)
+            {
+                poolDictionary[tag].Enqueue(objectToSpawn);
+                objectToSpawn = poolDictionary[tag].Dequeue();
+                Count++;
+            }
+        }
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;

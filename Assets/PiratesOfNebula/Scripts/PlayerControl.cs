@@ -8,7 +8,6 @@ public class PlayerControl : SpaceShips
     public GameObject TheHook;
     LineRenderer LR;
     Currency currency;
-    Health health;
     float MilkingTime;
     Hookable pudge;
     public int hookingStep;
@@ -50,7 +49,6 @@ public class PlayerControl : SpaceShips
         LR = TheHook.GetComponent<LineRenderer>();
         ShootingSide = new bool[Cannons.Length];
         currency = transform.parent.GetComponent<Currency>();
-        health = GetComponent<Health>();
         for (int i = 0; i < Cannons.Length; i++)
         {
             ChangeWeapon(Cannons[i],i);
@@ -62,7 +60,11 @@ public class PlayerControl : SpaceShips
     {
         base.Update();
         Movement();
-        Combat();
+        if (!health.Froze)
+        {
+            Combat();
+        }
+        else { StopHooking(); }
         HookingMechanic();
 
     }
@@ -88,7 +90,10 @@ public class PlayerControl : SpaceShips
         if (MoveAxl < 0) MoveAxl= 0; else if (MoveAxl > 1) MoveAxl = 1;
         float Speed;
         Speed = MovementSpeed * jsd  * (MoveAxl + 1);
-        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed  * Time.deltaTime;
+        float TempetureEffectSpeed = 1;
+        if (health.Tempeture<0) TempetureEffectSpeed+=(health.Tempeture*0.01f);
+        if (health.Froze) TempetureEffectSpeed = 0;
+        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed * TempetureEffectSpeed * Time.deltaTime;
         Vector3 Camdist = new Vector3(gameObject.transform.position.x, Cam.transform.position.y, gameObject.transform.position.z- CameraDistFromShip); //THIS IS THE CAM LOCATION!!!!!
         float dist = Vector3.Distance(Camdist, Cam.transform.position);
         if (dist > 2) { Cam.transform.position = Vector3.MoveTowards(Cam.transform.position, Camdist, Speed * 0.3f* dist * Time.deltaTime); }
@@ -123,16 +128,19 @@ public class PlayerControl : SpaceShips
     }
     void RotateTheShip(bool right)
     {
-        float RS = RotationSpeed * (ClosestRotation / 20);
-        if (right)
+        if (!health.Froze)
         {
-            if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, RS, 0); }
-            else if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, -RS, 0); }
-        }
-        else
-        {
-            if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, RS, 0); }
-            else if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, -RS, 0); }
+            float RS = RotationSpeed * (ClosestRotation / 20);
+            if (right)
+            {
+                if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, RS, 0); }
+                else if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, -RS, 0); }
+            }
+            else
+            {
+                if (RotateShip < gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, RS, 0); }
+                else if (RotateShip > gameObject.transform.rotation.eulerAngles.y) { gameObject.transform.Rotate(0, -RS, 0); }
+            }
         }
     }
     protected override void Combat()
@@ -174,7 +182,7 @@ public class PlayerControl : SpaceShips
                     float pdist = Vector3.Distance(P.transform.position, transform.position);
                     P.transform.position = Vector3.MoveTowards(P.transform.position, transform.position, (pdist * 0.01f) + 5 *Time.deltaTime);
                     P.transform.LookAt(transform.position);
-                    if (pdist < 0.1f) P.SetActive(false);
+                    if (pdist < 0.01f) P.SetActive(false);
                 }
             }
 
@@ -264,9 +272,9 @@ public class PlayerControl : SpaceShips
                     if (P?.activeSelf == true)
                     {
                         float pdist = Vector3.Distance(P.transform.position, TheHooked.transform.position);
-                        P.transform.position = Vector3.MoveTowards(P.transform.position, TheHooked.transform.position, (pdist*0.01f) + 2 * Time.deltaTime);
+                        P.transform.position = Vector3.MoveTowards(P.transform.position, TheHooked.transform.position, ((pdist*1f) + 0.6f) * Time.deltaTime);
                         P.transform.LookAt(TheHooked.transform.position);
-                        if (pdist < 0.1f) P.SetActive(false);
+                        if (pdist < 0.01f) P.SetActive(false);
                     }
                 }
 
@@ -324,23 +332,27 @@ public class PlayerControl : SpaceShips
 
     IEnumerator SpawnPirates(GameObject SpawnLocation)
     {
-        Vector3 BeforeBlastPosition = SpawnLocation.transform.position;
-        for (int i = 0; i < PiratesAmount; i++)
+        if (SpawnLocation.activeSelf == true)
         {
-            if (SpawnLocation.activeSelf == true)
+            Vector3 BeforeBlastPosition = SpawnLocation.transform.position;
+            for (int i = 0; i < PiratesAmount; i++)
             {
-                Pirates[i] = objectPooler.SpawnFromPool("Pirates", SpawnLocation.transform.position, SpawnLocation.transform.rotation);
-                Pirates[i].GetComponent<Animation>().Play("PirateJumping");
-                yield return new WaitForSeconds(0.2f);
+                if (SpawnLocation.activeSelf == true)
+                {
+                    Pirates[i] = objectPooler.SpawnFromPool("Pirates", SpawnLocation.transform.position, SpawnLocation.transform.rotation);
+                    Pirates[i].GetComponent<Animation>().Play("PirateJumping");
+                    yield return new WaitForSeconds(0.2f);
+                }
+                else //if The Spawn Location Blew Up
+                {
+                    Pirates[i] = objectPooler.SpawnFromPool("Pirates", BeforeBlastPosition, transform.rotation);
+                    Pirates[i].GetComponent<Animation>().Play("PirateJumping");
+                    yield return new WaitForSeconds(0.2f);
+                }
+
             }
-            else //if The Spawn Location Blew Up
-            {
-                Pirates[i] = objectPooler.SpawnFromPool("Pirates", BeforeBlastPosition, transform.rotation);
-                Pirates[i].GetComponent<Animation>().Play("PirateJumping");
-                yield return new WaitForSeconds(0.2f);
-            }
-            
         }
+        yield return new WaitForSeconds(0.0f);
     }
 
     public void PressingFire(int Side)

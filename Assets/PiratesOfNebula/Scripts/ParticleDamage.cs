@@ -57,7 +57,7 @@ public class ParticleDamage : Damager
                     Health hp = other.gameObject.GetComponent<Health>();
                     if (hp != null)
                     {
-                        hp.Damage(AttackDamage, Knockback, gameObject);
+                        hp.Damage(AttackDamage, Knockback, gameObject,TempetureEffect);
                         damagecooldown = DamageCooldown;
                     }
                 }

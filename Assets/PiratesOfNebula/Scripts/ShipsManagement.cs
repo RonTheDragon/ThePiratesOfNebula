@@ -15,11 +15,10 @@ public class ShipsManagement : MonoBehaviour
     PlayerData d;
 
     private void Awake()
-    {
+    {c = GetComponent<Currency>();
         if (PlayerPrefs.GetInt("NewGame")==0)
         {
             d = SaveSystem.Load(PlayerPrefs.GetInt("slot"));
-            c = GetComponent<Currency>();
             c.Money = d.Money; //set Money
             StartCoroutine(UpdateTheShop());
             Weapons = new List<GameObject>();
@@ -39,8 +38,15 @@ public class ShipsManagement : MonoBehaviour
         else
         {
             GetComponent<Tutorial>().StartTutorial();
+            StartCoroutine(FirstColor());
         }
         
+    }
+
+    IEnumerator FirstColor()
+    {
+        yield return new WaitForSeconds(0.01f);
+        c.Textures[0].ChangeColor();
     }
 
     IEnumerator UpdateTheShop()

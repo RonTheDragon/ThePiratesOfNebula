@@ -30,8 +30,11 @@ public class SpaceshipsAI : SpaceShips
         base.Update();
         if (!hookAble.hookable)
         {
-            Movement();
-            Combat();
+            if (!health.Froze)
+            {
+                Movement();
+                Combat();
+            }
         }
     }
     public void Scan(float Range)
@@ -80,8 +83,10 @@ public class SpaceshipsAI : SpaceShips
     protected override void Movement()
     {
         CheckForDodge();
-
-        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed * Time.deltaTime; //Go Forward
+        float TempetureEffectSpeed = 1;
+        if (health.Tempeture < 0) TempetureEffectSpeed += (health.Tempeture * 0.01f);
+        if (health.Froze) TempetureEffectSpeed = 0;
+        gameObject.transform.position = gameObject.transform.position + gameObject.transform.forward * Speed * TempetureEffectSpeed * Time.deltaTime; //Go Forward
 
         if (Target != null) //Rotate Towards Target
         {

@@ -17,8 +17,18 @@ public class Health : MonoBehaviour
     public string[] SpawnOnDeath;
     public GameObject[] TurnOffWhenDeath;
     public GameObject DamageIndicator;
+    public bool NoTempeture;
+   [HideInInspector]
+    public float Tempeture;
+   [HideInInspector]
+    public bool Burn;
+    [HideInInspector]
+    public bool Froze;
     SpaceshipsAI SAI;
     ObjectPooler objectPooler;
+    GameObject OnFire;
+    GameObject IceCube;
+    
     // Start is called before the first frame update
 
     void Start()
@@ -37,6 +47,32 @@ public class Health : MonoBehaviour
 
 
         if (knockback > 0) { Knockback(); }
+
+        if (!NoTempeture)
+        {
+            if (Tempeture > 0)
+            {
+                Froze = false; Tempeture -= 20 * Time.deltaTime; IceCube?.SetActive(false);
+                if (Tempeture > 100) { Tempeture = 100; if (!Burn && Hp > 0) { OnFire = objectPooler.SpawnFromPool("OnFire", transform.position, Quaternion.Euler(new Vector3()), transform.localScale, true); Burn = true; } }
+            }
+            else if (Tempeture < 0)
+            {
+                Burn = false; Tempeture += 20 * Time.deltaTime; OnFire?.SetActive(false); 
+                if (Tempeture < -100) { Tempeture = -100; if (!Froze&&Hp>0) { IceCube = objectPooler.SpawnFromPool("IceCube", transform.position, transform.rotation, transform.localScale, true); Froze = true; } } }
+
+            else { Burn = false; Froze = false; OnFire?.SetActive(false); IceCube?.SetActive(false); }
+
+            if (Burn)
+            {
+                OnFire.transform.position = transform.position;
+                Hp -= 5*Time.deltaTime;
+            }
+            if (Froze)
+            {
+                IceCube.transform.position = transform.position;
+                IceCube.transform.rotation = transform.rotation;
+            }
+        }
 
         if (Healthbar != null)
         {
@@ -67,11 +103,12 @@ public class Health : MonoBehaviour
     }
 
 
-    public void Damage(float damage, float kb, GameObject attacker)
+    public void Damage(float damage, float kb, GameObject attacker ,float TempChange = 0)
     {
         if (Hp > 0)
         {
             Hp -= damage;
+            if (TempChange != 0) {if(TempChange>0||!Froze) Tempeture += TempChange; }
             Attacker = attacker;
             if (knockback < kb)
             {
@@ -86,6 +123,8 @@ public class Health : MonoBehaviour
 
     void Death()
     {
+        OnFire?.SetActive(false);
+        IceCube?.SetActive(false);
         foreach (string s in SpawnOnDeath)
         {
             objectPooler.SpawnFromPool(s, transform.position, transform.rotation, transform.localScale);

@@ -15,6 +15,8 @@ public class Sound
     public AudioClip Clip;
     public bool Loop;
     public bool HearEveryWhere;
+    public float MinRange = 20;
+    public float MaxRange = 30;
     [Range(0f, 1f)]
     public float Volume = 1f;
     [Range(.1f, 3f)]
@@ -54,8 +56,8 @@ public class AudioManager : MonoBehaviour
             {
                 s.source.spatialBlend = 1;
                 s.source.rolloffMode = AudioRolloffMode.Linear;
-                s.source.minDistance = 20;
-                s.source.maxDistance = 30;
+                s.source.minDistance = s.MinRange;
+                s.source.maxDistance = s.MaxRange;
             }
             if (s.soundType == Sound.SoundType.Normal)
             {

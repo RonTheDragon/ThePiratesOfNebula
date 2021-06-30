@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : Damager , IpooledObject
+public class Shoot : Damager
 {
     public float Speed;
     public bool DestroyOnImpact;
@@ -12,17 +12,14 @@ public class Shoot : Damager , IpooledObject
     public string[] SpawnOnDeath;
     ObjectPooler objectPooler;
     // Start is called before the Active
-    public void OnObjectSpawn()
-    {
-        
-    }
-    void Start()
+    
+    public void Start()
     {
         objectPooler = ObjectPooler.Instance;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         transform.position = gameObject.transform.position + gameObject.transform.forward * Speed * Time.deltaTime;
         transform.position = new Vector3() { x = transform.position.x, y = 0, z = transform.position.z };
@@ -67,7 +64,7 @@ public class Shoot : Damager , IpooledObject
                     Health hp = collision.gameObject.GetComponent<Health>();
                     if (hp != null)
                     {
-                        hp.Damage(AttackDamage, Knockback, gameObject);
+                        hp.Damage(AttackDamage, Knockback, gameObject,TempetureEffect);
                         if (DestroyOnImpact) {
                             foreach (string s in SpawnOnDeath)
                             {

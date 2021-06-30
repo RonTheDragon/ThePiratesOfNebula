@@ -6,6 +6,7 @@ public class Damager : MonoBehaviour
 {
     public float AttackDamage;
     public float Knockback;
+    public float TempetureEffect;
 
     public bool CantHitPlayer;
     public bool CantHitEnemy;
